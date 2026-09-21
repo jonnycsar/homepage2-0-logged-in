@@ -1,0 +1,1497 @@
+/* ============================================================================
+   NALU — Component styles (token-driven, brand-aware).
+   Recreates the visual layer of @atolls/nalu-react components. Every value
+   reads a Nalu token, so [data-brand] re-skins all components.
+   Load order in a thumbnail/app:  styles.css  →  components.css
+   ============================================================================ */
+
+.nalu-icon { display: inline-block; flex: 0 0 auto; color: currentColor; }
+
+/* ── Button ──────────────────────────────────────────────────────────────── */
+.nalu-btn {
+  all: unset; box-sizing: border-box; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font-family: var(--typography-title-font-family-large); font-weight: 700;
+  border: 1.5px solid transparent; border-radius: var(--button-corner-radius);
+  transition: background .18s, border-color .18s, color .18s; white-space: nowrap;
+  text-decoration: none;
+}
+.nalu-btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--button-focus-ring); }
+.nalu-btn--small  { padding: 6px 16px;  font-size: 14px; line-height: 20px; }
+.nalu-btn--medium { padding: 9px 20px;  font-size: 14px; line-height: 24px; }
+.nalu-btn--large  { padding: 11px 26px; font-size: 16px; line-height: 24px; }
+.nalu-btn--small .nalu-icon  { width: 16px; height: 16px; }
+.nalu-btn--medium .nalu-icon { width: 18px; height: 18px; }
+.nalu-btn--large .nalu-icon  { width: 20px; height: 20px; }
+.nalu-btn[aria-disabled="true"] { cursor: not-allowed; }
+
+/* appearance × emphasis matrix */
+.nalu-btn--primary-high { background: var(--button-primary-high-idle-background); border-color: var(--button-primary-high-idle-border); color: var(--button-primary-high-label); }
+.nalu-btn--primary-high:hover { background: var(--button-primary-high-hover-background); border-color: var(--button-primary-high-hover-border); }
+.nalu-btn--primary-high:active { background: var(--button-primary-high-pressed-background); border-color: var(--button-primary-high-pressed-border); }
+.nalu-btn--primary-medium { background: var(--button-primary-medium-idle-background); border-color: var(--button-primary-medium-idle-border); color: var(--button-primary-medium-label); }
+.nalu-btn--primary-medium:hover { background: var(--button-primary-medium-hover-background); }
+.nalu-btn--primary-medium:active { background: var(--button-primary-medium-pressed-background); }
+.nalu-btn--primary-low { background: var(--button-primary-low-idle-background); border-color: var(--button-primary-low-idle-border); color: var(--button-primary-low-label); }
+.nalu-btn--primary-low:hover { background: var(--button-primary-low-hover-background); }
+.nalu-btn--primary-low:active { background: var(--button-primary-low-pressed-background); }
+.nalu-btn--secondary-high { background: var(--button-secondary-high-idle-background); border-color: var(--button-secondary-high-idle-border); color: var(--button-secondary-high-label); }
+.nalu-btn--secondary-high:hover { background: var(--button-secondary-high-hover-background); border-color: var(--button-secondary-high-hover-border); color: var(--button-primary-high-label); }
+.nalu-btn--secondary-medium { background: var(--button-secondary-medium-idle-background); border-color: var(--button-secondary-medium-idle-border); color: var(--button-secondary-medium-label); }
+.nalu-btn--secondary-medium:hover { background: var(--button-secondary-medium-hover-background); border-color: var(--button-secondary-medium-hover-border); }
+.nalu-btn--secondary-low { background: var(--button-secondary-low-idle-background); border-color: var(--button-secondary-low-idle-border); color: var(--button-secondary-low-label); }
+.nalu-btn--secondary-low:hover { background: var(--button-secondary-low-hover-background); }
+.nalu-btn--disabled, .nalu-btn[aria-disabled="true"] { background: var(--button-primary-high-disabled-background) !important; border-color: var(--button-primary-high-disabled-border) !important; color: var(--colors-neutral-98) !important; }
+.nalu-btn--full { width: 100%; }
+.nalu-btn-spinner { width: 16px; height: 16px; border-radius: 99px; border: 2px solid currentColor; border-right-color: transparent; animation: nalu-spin .7s linear infinite; opacity: .9; }
+@keyframes nalu-spin { to { transform: rotate(360deg); } }
+
+/* ── IconButton & FAB ────────────────────────────────────────────────────── */
+.nalu-iconbtn { all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; border-radius: 99px; border: 1.5px solid transparent; transition: background .15s, border-color .15s, color .15s; color: var(--content-default); }
+.nalu-iconbtn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--button-focus-ring); }
+.nalu-iconbtn--small { width: 32px; height: 32px; }
+.nalu-iconbtn--medium { width: 40px; height: 40px; }
+.nalu-iconbtn--large { width: 48px; height: 48px; }
+.nalu-iconbtn--small .nalu-icon  { width: 16px; height: 16px; }
+.nalu-iconbtn--medium .nalu-icon { width: 20px; height: 20px; }
+.nalu-iconbtn--large .nalu-icon  { width: 24px; height: 24px; }
+/* appearance × emphasis matrix (mirrors Button token families) */
+.nalu-iconbtn--primary-high { background: var(--button-primary-high-idle-background); color: var(--button-primary-high-label); }
+.nalu-iconbtn--primary-high:hover { background: var(--button-primary-high-hover-background); }
+.nalu-iconbtn--primary-high:active { background: var(--button-primary-high-pressed-background); }
+.nalu-iconbtn--primary-medium { border-color: var(--button-primary-medium-idle-border); color: var(--button-primary-medium-label); }
+.nalu-iconbtn--primary-medium:hover { background: var(--button-primary-medium-hover-background); }
+.nalu-iconbtn--primary-low { color: var(--button-primary-low-label); }
+.nalu-iconbtn--primary-low:hover { background: var(--colors-transparent-black-alpha-8); }
+.nalu-iconbtn--secondary-high { background: var(--button-secondary-high-idle-background); color: var(--button-secondary-high-label); border-color: var(--button-secondary-high-idle-border); }
+.nalu-iconbtn--secondary-high:hover { background: var(--button-secondary-high-hover-background); }
+.nalu-iconbtn--secondary-medium { border-color: var(--button-secondary-medium-idle-border); color: var(--button-secondary-medium-label); }
+.nalu-iconbtn--secondary-medium:hover { background: var(--button-secondary-medium-hover-background); }
+.nalu-iconbtn--secondary-low { color: var(--button-secondary-low-label); }
+.nalu-iconbtn--secondary-low:hover { background: var(--colors-transparent-black-alpha-8); }
+.nalu-iconbtn--disabled { pointer-events: none; opacity: .45; }
+.nalu-fab { all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 99px; box-shadow: var(--elevation-lg); transition: background .18s; }
+.nalu-fab .nalu-icon { width: 24px; height: 24px; }
+.nalu-fab--primary { background: var(--button-primary-high-idle-background); color: var(--button-primary-high-label); }
+.nalu-fab--primary:hover { background: var(--button-primary-high-hover-background); }
+.nalu-fab--secondary { background: var(--button-secondary-high-idle-background); color: var(--button-secondary-high-label); border: 1.5px solid var(--button-secondary-high-idle-border); }
+.nalu-fab--secondary:hover { background: var(--button-secondary-high-hover-background); }
+.nalu-fab--disabled { pointer-events: none; opacity: .45; }
+
+/* ── ToggleButton (heart favourite) ──────────────────────────────────────────
+   Controlled toggle: aria-pressed drives the state. Nalu is LINE-ICONS ONLY, so
+   the heart is never filled — --tb-fill stays transparent in every state and
+   only the outline `color` (stroke="currentColor") shifts idle→selected.      */
+.nalu-togglebtn {
+  all: unset; box-sizing: border-box; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--dimension-component-xs);                 /* 8px  */
+  padding: 0 var(--toggle-padding-right, 2px) 0 0;
+  border-radius: var(--dimension-component-2-xs);     /* 4px  */
+  background: transparent;
+  --tb-fill: transparent;                             /* line icon: no fill, ever */
+  color: var(--colors-black);                         /* heart outline */
+}
+.nalu-togglebtn-icon {
+  height: var(--dimension-component-xl); width: var(--dimension-component-xl);  /* 24px */
+  flex: 0 0 auto; display: inline-flex;
+  border-radius: var(--dimension-component-2-xs);
+  transition: color .25s, fill .25s;
+}
+.nalu-togglebtn-icon path { fill: var(--tb-fill); stroke: currentColor; }
+.nalu-togglebtn-label {
+  color: var(--colors-neutral-5);
+  font-family: var(--typography-label-font-family);
+  font-size: 11px; line-height: 14px; font-weight: 700;
+}
+/* unselected states */
+.nalu-togglebtn:hover { color: var(--colors-neutral-40); }
+.nalu-togglebtn:focus-visible {
+  background: var(--colors-transparent-black-alpha-8);
+  box-shadow: 0 0 0 2px var(--colors-primary-55);
+}
+.nalu-togglebtn:active { color: var(--colors-danger-50); }
+.nalu-togglebtn:disabled { pointer-events: none; cursor: default; color: var(--colors-neutral-55); }
+/* selected states — outline colour only, heart stays unfilled */
+.nalu-togglebtn[aria-pressed="true"] { color: var(--colors-danger-50); }
+.nalu-togglebtn[aria-pressed="true"]:hover { color: var(--colors-danger-70); }
+.nalu-togglebtn[aria-pressed="true"]:focus-visible {
+  background: var(--colors-transparent-black-alpha-8);
+  color: var(--colors-danger-70);
+  box-shadow: 0 0 0 2px var(--colors-primary-55);
+}
+.nalu-togglebtn[aria-pressed="true"]:active { color: var(--colors-black); }
+.nalu-togglebtn[aria-pressed="true"]:disabled { color: var(--colors-neutral-55); }
+
+/* ── Link ────────────────────────────────────────────────────────────────── */
+.nalu-link { display: inline-flex; align-items: center; gap: 5px; color: var(--content-link-idle); font-family: var(--typography-body-font-family); font-weight: 700; text-decoration: none; cursor: pointer; background: none; border: none; padding: 0; }
+.nalu-link:hover { color: var(--content-link-hover); text-decoration: underline; }
+.nalu-link--small  { font-size: 14px; line-height: 20px; }
+.nalu-link--medium { font-size: 16px; line-height: 24px; }
+.nalu-link--large  { font-size: 18px; line-height: 28px; }
+.nalu-link--secondary { color: var(--content-default); }
+.nalu-link--secondary:hover { color: var(--content-default); }
+.nalu-link[aria-disabled="true"] { color: var(--colors-neutral-55); cursor: not-allowed; text-decoration: none; }
+.nalu-link-icon { width: 1em; height: 1em; }
+
+/* ── Tag / PredefinedTag ─────────────────────────────────────────────────── */
+/* ── Tag ─────────────────────────────────────────────────────────────────────
+   Small rounded-rect; dark (neutral-5) label across all emphases; bg shifts by
+   emphasis (high = strong fill, medium = tint, low = transparent). Not uppercase. */
+.nalu-tag { display: inline-flex; align-items: center; justify-content: center; width: fit-content; box-sizing: border-box; gap: var(--dimension-component-2-xs); padding: 0 var(--dimension-component-xs); border-radius: var(--dimension-component-xs); border: 1px solid transparent; font-family: var(--typography-label-font-family); font-size: 12px; line-height: 20px; font-weight: 700; color: var(--colors-neutral-5); white-space: nowrap; background: transparent; }
+/* 1.200.0 (FDEL-2187) — a Tag is nowrap; wrapping happens in the container */
+.nalu-tag { white-space: nowrap; }
+.nalu-tag .nalu-icon, .nalu-tag-icon { width: var(--dimension-component-l); height: var(--dimension-component-l); }
+.nalu-tag--high   { background: var(--tag-hi); border-color: var(--tag-hi); }
+.nalu-tag--medium { background: var(--tag-md); border-color: var(--tag-md); }
+.nalu-tag--low    { background: transparent; border-color: transparent; }
+.nalu-tag--primary   { --tag-hi: var(--colors-primary-70);   --tag-md: var(--colors-primary-90); }
+.nalu-tag--secondary { --tag-hi: var(--colors-secondary-70); --tag-md: var(--colors-secondary-90); }
+.nalu-tag--tertiary  { --tag-hi: var(--colors-tertiary-80);  --tag-md: var(--colors-tertiary-90); }
+.nalu-tag--neutral   { --tag-hi: var(--colors-neutral-70);   --tag-md: var(--colors-neutral-95); }
+.nalu-tag--warning   { --tag-hi: var(--colors-primary-70);   --tag-md: var(--colors-primary-90); }
+.nalu-tag--danger    { --tag-hi: var(--colors-danger-50);    --tag-md: var(--colors-danger-90); }
+.nalu-tag--success   { --tag-hi: var(--colors-success-50);   --tag-md: var(--colors-success-90); }
+/* PredefinedTag "Expires" custom style — danger-90 fill (source expiresTagStyles) */
+.nalu-tag--expires { background: var(--colors-danger-90); border-color: var(--colors-danger-90); }
+/* PredefinedTag "Exclusive" — driven by brand --special-tag-* tokens (1.183.0).
+   FLAGGED: per-brand values postdate this token snapshot; primary-50/white fallback. */
+.nalu-tag--special {
+  background: var(--special-tag-background, var(--colors-primary-50));
+  border-color: var(--special-tag-background, var(--colors-primary-50));
+  color: var(--special-tag-foreground, var(--colors-white));
+}
+.nalu-tag--special .nalu-tag-icon { color: var(--special-tag-foreground, var(--colors-white)); }
+
+/* ── ChipGroup (scrollable Chip row) ────────────────────────────────────────*/
+.nalu-chipgroup { display: flex; gap: var(--dimension-component-xs); overflow-x: auto; padding: 2px; white-space: nowrap; scrollbar-width: thin; }
+.nalu-chipgroup > .nalu-chip { flex: 0 0 auto; }
+
+/* ── Badge ───────────────────────────────────────────────────────────────── */
+.nalu-badge { display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; min-width: 20px; min-height: 20px; padding: 2px; border-radius: 99px; border: 2px solid transparent; font-family: var(--typography-label-font-family); font-size: 12px; line-height: 1; font-weight: 700; }
+.nalu-badge--low  { background: var(--colors-primary-90); color: var(--colors-primary-30); }
+.nalu-badge--high { background: var(--colors-primary-55); color: var(--colors-white); }
+.nalu-badge-num { padding: 0 4px; text-align: center; }
+.nalu-badge-icon { width: 16px; height: 16px; }
+
+/* ── Chip ────────────────────────────────────────────────────────────────── */
+.nalu-chip { all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 99px; border: 1.5px solid var(--border-default); background: var(--background-surface-elevated); font-family: var(--typography-title-font-family-large); font-weight: 700; font-size: 14px; color: var(--content-default); transition: background .15s, border-color .15s, color .15s; }
+.nalu-chip .nalu-icon, .nalu-chip-icon { width: 16px; height: 16px; }
+.nalu-chip:hover { border-color: var(--content-default); }
+.nalu-chip--selected { background: var(--colors-neutral-5); color: #fff; border-color: var(--colors-neutral-5); }
+.nalu-chip--disabled { opacity: .45; pointer-events: none; }
+
+/* ── Avatar ──────────────────────────────────────────────────────────────── */
+.nalu-avatar { display: inline-flex; align-items: center; justify-content: center; overflow: hidden; text-transform: uppercase; font-family: var(--typography-title-font-family-large); font-weight: 700; }
+.nalu-avatar-img, .nalu-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.nalu-avatar--extraSmall { width: 24px; height: 24px; font-size: 11px; }
+.nalu-avatar--small { width: 32px; height: 32px; font-size: 13px; }
+.nalu-avatar--medium { width: 40px; height: 40px; font-size: 15px; }
+.nalu-avatar--large { width: 56px; height: 56px; font-size: 20px; }
+.nalu-avatar--circle { border-radius: 99px; }
+.nalu-avatar--rounded { border-radius: 8px; }
+.nalu-avatar--sharp { border-radius: 0; }
+.nalu-avatar--primary { background: var(--colors-primary-90); color: var(--colors-primary-30); }
+.nalu-avatar--neutral { background: var(--colors-neutral-90); color: var(--colors-neutral-30); }
+
+/* ── Rating ──────────────────────────────────────────────────────────────── */
+.nalu-rating { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.nalu-rating--labelright { flex-direction: row; align-items: center; gap: 8px; }
+.nalu-rating-stars { display: inline-flex; gap: 2px; }
+.nalu-rating-stars--interactive { cursor: pointer; }
+.nalu-rating-star { position: relative; width: 18px; height: 18px; }
+.nalu-rating-empty, .nalu-rating-full { width: 18px; height: 18px; display: block; }
+.nalu-rating-empty { color: var(--colors-neutral-80); }
+.nalu-rating-fill { position: absolute; inset: 0; overflow: hidden; color: var(--colors-secondary-50); }
+.nalu-rating--disabled { opacity: .5; }
+.nalu-rating-label { font-family: var(--typography-body-font-family); font-size: 13px; color: var(--content-subtle); }
+
+/* ── Divider ─────────────────────────────────────────────────────────────── */
+.nalu-divider { border: none; background: var(--border-subtle); }
+.nalu-divider--h { height: 1px; width: 100%; }
+.nalu-divider--v { width: 1px; align-self: stretch; }
+
+/* ── Heading (section header block) ─────────────────────────────────────────
+   Title (display/headline font) + optional body + optional top-right button. */
+.nalu-heading { display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-start; box-sizing: border-box; width: 100%; }
+.nalu-heading-header { display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 8px; width: 100%; flex-shrink: 0; }
+.nalu-heading-title { flex: 1 1 var(--nalu-heading-title-minw, 200px); min-width: var(--nalu-heading-title-minw, 200px); margin: 0; text-align: left; color: var(--colors-neutral-5); font-family: var(--typography-display-font-family-large); font-weight: 500; }
+.nalu-heading-action { flex-shrink: 0; }
+.nalu-heading-body { width: 100%; margin: 0; text-align: left; color: var(--colors-neutral-5); font-family: var(--typography-body-font-family); font-weight: 400; }
+/* size ramp */
+.nalu-heading--large  { gap: var(--dimension-component-l); }   /* 16 */
+.nalu-heading--large  .nalu-heading-title { font-size: var(--typography-display-size-small); line-height: var(--typography-display-line-height-small); }
+.nalu-heading--large  .nalu-heading-body  { font-size: var(--typography-body-size-large); line-height: var(--typography-body-line-height-large); }
+.nalu-heading--medium { gap: 12px; }
+.nalu-heading--medium .nalu-heading-title { font-size: var(--typography-headline-size-medium); line-height: var(--typography-headline-line-height-medium); }
+.nalu-heading--medium .nalu-heading-body  { font-size: 14px; line-height: 22px; }
+.nalu-heading--small  { gap: 8px; }
+.nalu-heading--small  .nalu-heading-title { font-size: var(--typography-headline-size-small); line-height: var(--typography-headline-line-height-small); }
+.nalu-heading--small  .nalu-heading-body  { font-size: 14px; line-height: 22px; }
+
+/* ── AspectRatio / RetailerLogo / FlexibleRetailerLogo ──────────────────────*/
+.nalu-ratio { width: 100%; aspect-ratio: var(--nalu-ratio-base, 1 / 1); }
+.nalu-ratio > * { width: 100%; height: 100%; }
+/* responsive ratio (1.191.0): tablet ≥648, desktop ≥1200 fall back to the previous tier */
+@media (min-width: 648px) { .nalu-ratio { aspect-ratio: var(--nalu-ratio-tablet, var(--nalu-ratio-base, 1 / 1)); } }
+@media (min-width: 1200px) { .nalu-ratio { aspect-ratio: var(--nalu-ratio-desktop, var(--nalu-ratio-tablet, var(--nalu-ratio-base, 1 / 1))); } }
+/* borderOff / radiusOff default to true (1.191.1) — opt in via the modifiers */
+.nalu-ratio--border { border: var(--ratio-border, 1px) solid var(--border-subtle); box-sizing: border-box; }
+.nalu-ratio--radius { border-radius: 4px; overflow: hidden; }
+.nalu-retailerlogo {
+  display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box;
+  background: var(--rl-bg, transparent);
+  border: var(--retailerlogo-border-w, 1px) solid var(--colors-transparent-black-alpha-10);
+  border-radius: var(--dimension-component-2-xs);
+  overflow: hidden; transition: all .2s ease-in-out;
+}
+.nalu-retailerlogo--small      { width: var(--dimension-component-2-xl); height: var(--dimension-component-2-xl); }  /* 32 */
+.nalu-retailerlogo--medium     { width: var(--dimension-component-3-xl); height: var(--dimension-component-3-xl); }  /* 40 */
+.nalu-retailerlogo--large      { width: var(--dimension-component-4-xl); height: var(--dimension-component-4-xl); }  /* 48 */
+.nalu-retailerlogo--extraLarge { width: var(--dimension-component-5-xl); height: var(--dimension-component-5-xl); }  /* 64 */
+.nalu-retailerlogo--flexible   { width: 100%; display: block; }
+.nalu-retailerlogo--border-off { --retailerlogo-border-w: 0; border-color: transparent; }
+.nalu-retailerlogo--radius-off { border-radius: 0; }
+.nalu-retailerlogo-img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+/* ── BrandLogo / Flag (sprite-backed) ───────────────────────────────────────*/
+.nalu-brandlogo { display: inline-flex; align-items: center; justify-content: center; vertical-align: middle; }
+.nalu-brandlogo--small  { width: var(--dimension-component-l);  height: var(--dimension-component-l); }   /* 16 */
+.nalu-brandlogo--medium { width: var(--dimension-component-xl); height: var(--dimension-component-xl); }  /* 24 */
+.nalu-brandlogo--large  { width: var(--dimension-component-2-xl); height: var(--dimension-component-2-xl); } /* 32 */
+.nalu-brandlogo--monochrome { color: var(--colors-neutral-5); }
+.nalu-flag { width: var(--dimension-component-xl); aspect-ratio: 3 / 2; display: inline-block; vertical-align: middle; border-radius: 2px; overflow: hidden; }
+
+/* ── Carousel (swipe track + arrows + dots) ─────────────────────────────────*/
+.nalu-carousel { display: flex; flex-direction: column; gap: var(--dimension-component-l); width: 100%; }
+.nalu-carousel-wrap { display: flex; gap: var(--dimension-component-l); align-self: stretch; align-items: center; justify-content: center; }
+.nalu-carousel-arrowwrap { display: none; flex-shrink: 0; }
+.nalu-carousel-arrow { cursor: pointer; }
+.nalu-carousel-arrow:disabled { cursor: default; opacity: .55; }
+.nalu-carousel-viewport { overflow: hidden; position: relative; flex-grow: 1; min-width: 0; touch-action: pan-y; }
+.nalu-carousel-track { display: flex; list-style: none; padding: 0; margin: 0; gap: var(--dimension-component-l); transition: transform .3s ease; }
+.nalu-carousel-slide { flex: 0 0 100%; width: 100%; box-sizing: border-box; }
+.nalu-carousel-dotswrap { display: block; }
+.nalu-carousel-dot { cursor: pointer; padding: 0; border: none; background: var(--colors-neutral-80); display: inline-block; }
+.nalu-carousel-dot.nalu-dot--active { background: var(--brand-primary); }
+@media (min-width: 648px) {
+  .nalu-carousel-arrowwrap { display: flex; }
+  .nalu-carousel-dotswrap--mobile { display: none; }
+}
+
+/* ── ExpandableText (read-more) ─────────────────────────────────────────────*/
+.nalu-expandabletext { width: 100%; display: flex; flex-direction: column; gap: var(--dimension-component-l); overflow: hidden; }
+.nalu-expandabletext-header { all: unset; box-sizing: border-box; display: flex; width: 100%; align-items: center; gap: var(--dimension-component-2-xs); cursor: pointer; user-select: none; color: var(--colors-neutral-5); font-family: var(--typography-body-font-family); font-size: var(--typography-body-size-small); line-height: var(--typography-body-line-height-small); font-weight: 700; transition: all .2s ease; }
+.nalu-expandabletext-trigger { flex: 0 0 auto; color: var(--colors-neutral-5); opacity: .8; transition: transform .3s cubic-bezier(.4,0,.2,1); }
+.nalu-expandabletext-header[data-state="open"] .nalu-expandabletext-trigger { transform: rotate(180deg); }
+.nalu-expandabletext-content { display: flex; flex-direction: column; gap: var(--dimension-component-l); }
+.nalu-expandabletext-content--hidden { display: none; }
+.nalu-expandabletext-title { margin: 0; font-family: var(--typography-title-font-family-small); font-size: var(--typography-title-size-small); line-height: var(--typography-title-line-height-small); font-weight: 700; color: var(--colors-neutral-5); }
+.nalu-expandabletext-body { font-family: var(--typography-body-font-family); font-size: var(--typography-body-size-medium); line-height: var(--typography-body-line-height-medium); font-weight: 400; color: var(--colors-neutral-5); }
+
+/* ── OfferCaption (rate lock-up) ────────────────────────────────────────────*/
+.nalu-offercaption { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-sizing: border-box; width: 175px; max-width: 100%; color: var(--colors-black); }
+.nalu-offercaption-line { max-width: 100%; overflow-wrap: break-word; word-break: normal; hyphens: auto; margin: 0; font-family: var(--typography-title-font-family-large); }
+.nalu-offercaption-l1 { font-size: 26px; line-height: 30px; font-weight: 700; }
+.nalu-offercaption-l2 { font-size: 26px; line-height: 30px; font-weight: 700; }
+.nalu-offercaption-l3 { font-size: 14px; line-height: 20px; font-weight: 400; }
+
+/* ── Inputs (base, field, search, password) ─────────────────────────────── */
+.nalu-field { display: flex; flex-direction: column; gap: 6px; }
+.nalu-field-label { font-family: var(--typography-label-font-family); font-size: 12px; font-weight: 700; color: var(--content-default); }
+.nalu-input { display: flex; align-items: center; gap: 8px; height: 48px; padding: 0 14px; background: var(--background-surface-elevated); border: 1.5px solid var(--border-default); border-radius: var(--radius); transition: border-color .15s, box-shadow .15s; }
+.nalu-input .nalu-icon { width: 20px; height: 20px; color: var(--content-subtle); }
+.nalu-input input { all: unset; flex: 1; min-width: 0; font-family: var(--typography-body-font-family); font-size: 14px; color: var(--content-default); }
+.nalu-input input::placeholder { color: var(--content-subtle); }
+.nalu-input--focus { border-color: var(--brand-primary); box-shadow: 0 0 0 2px var(--brand-primary); }
+.nalu-input--error { border-color: var(--error-background); }
+.nalu-input--disabled { background: var(--colors-neutral-95); border-color: var(--border-subtle); }
+.nalu-input--readonly { background: var(--colors-neutral-98); }
+.nalu-input--search { border-radius: 99px; }
+.nalu-input-suffix { color: var(--content-subtle); font-family: var(--typography-body-font-family); font-size: 14px; flex: 0 0 auto; }
+.nalu-input-clear { all: unset; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; color: var(--content-subtle); flex: 0 0 auto; }
+.nalu-input-clear:hover { color: var(--content-default); }
+.nalu-input-clear .nalu-icon { width: 16px; height: 16px; }
+/* BaseInput slots (1.181.0) — leading/trailing icon wells */
+.nalu-input-slot { display: inline-flex; align-items: center; flex-shrink: 0; width: 20px; height: 20px; color: var(--content-subtle); }
+.nalu-input-slot .nalu-icon { width: 20px; height: 20px; }
+.nalu-support { font-family: var(--typography-body-font-family); font-size: 12px; color: var(--content-subtle); display: flex; align-items: center; gap: 5px; }
+.nalu-support--error { color: var(--error-background); }
+.nalu-support .nalu-icon { width: 14px; height: 14px; }
+
+/* ── Checkbox / Radio / Switch ───────────────────────────────────────────── */
+/* ── Checkbox / Radio / Switch (label-less controls) ─────────────────────
+   Real <input> (visually hidden) + sibling visual <label>; :checked drives state. */
+.nalu-check-input, .nalu-radio-input, .nalu-switch-input { position: absolute; width: 1px; height: 1px; opacity: 0; margin: 0; pointer-events: none; }
+.nalu-check { width: 20px; height: 20px; border: 1.5px solid var(--colors-neutral-50); border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; color: #fff; flex: 0 0 auto; cursor: pointer; transition: background .15s, border-color .15s; }
+.nalu-check-mark { width: 14px; height: 14px; opacity: 0; }
+.nalu-check-input:checked + .nalu-check { background: var(--colors-neutral-5); border-color: var(--colors-neutral-5); }
+.nalu-check-input:checked + .nalu-check .nalu-check-mark { opacity: 1; }
+.nalu-check-input:focus-visible + .nalu-check { box-shadow: 0 0 0 3px var(--button-focus-ring); }
+.nalu-check-input:disabled + .nalu-check { opacity: .45; cursor: not-allowed; }
+.nalu-radio { width: 20px; height: 20px; border: 1.5px solid var(--colors-neutral-50); border-radius: 99px; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; cursor: pointer; transition: border-color .15s; }
+.nalu-radio::after { content: ''; width: 10px; height: 10px; border-radius: 99px; background: var(--colors-neutral-5); opacity: 0; transition: opacity .15s; }
+.nalu-radio-input:checked + .nalu-radio { border-color: var(--colors-neutral-5); }
+.nalu-radio-input:checked + .nalu-radio::after { opacity: 1; }
+.nalu-radio-input:focus-visible + .nalu-radio { box-shadow: 0 0 0 3px var(--button-focus-ring); }
+.nalu-radio-input:disabled + .nalu-radio { opacity: .45; cursor: not-allowed; }
+.nalu-switch { width: 40px; height: 24px; border-radius: 99px; background: var(--colors-neutral-70); position: relative; display: inline-block; cursor: pointer; transition: background .18s; flex: 0 0 auto; }
+.nalu-switch-knob { position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; border-radius: 99px; background: #fff; box-shadow: var(--elevation-xs); transition: transform .18s; }
+.nalu-switch-input:checked + .nalu-switch { background: var(--brand-primary); }
+.nalu-switch-input:checked + .nalu-switch .nalu-switch-knob { transform: translateX(16px); }
+.nalu-switch-input:focus-visible + .nalu-switch { box-shadow: 0 0 0 3px var(--button-focus-ring); }
+.nalu-switch-input:disabled + .nalu-switch { opacity: .45; cursor: not-allowed; }
+
+/* ── Stepper / StepperItem (progress wizard) ─────────────────────────────────
+   Stepper lays out StepperItems; StepperItem = Badge marker + title + support. */
+.nalu-stepper { display: flex; gap: var(--dimension-component-xl); }   /* 24px */
+.nalu-stepper--vertical { flex-direction: column; }
+.nalu-stepper--horizontal { flex-direction: column; }
+@media (min-width: 648px) { .nalu-stepper--horizontal { flex-direction: row; } }
+.nalu-stepper-cell { flex: 1; }
+
+.nalu-stepperitem { display: flex; align-items: flex-start; gap: var(--dimension-component-l); }  /* 16px */
+.nalu-stepperitem--row { flex-direction: row; }
+.nalu-stepperitem--column { flex-direction: column; }
+.nalu-stepperitem-badge { flex-shrink: 0; }
+.nalu-stepperitem-content { display: flex; flex-direction: column; gap: var(--dimension-component-xs); }  /* 8px */
+.nalu-stepperitem-title { font-family: var(--typography-title-font-family-large); font-size: 18px; font-weight: 700; line-height: 24px; color: var(--colors-black); }
+.nalu-stepperitem-support { font-family: var(--typography-body-font-family); font-size: 14px; font-weight: 500; line-height: 20px; color: var(--colors-black); }
+
+/* ── SupportText (form helper / validation) ─────────────────────────────────
+   Inline text + trailing status icon; text & icon share one colour per tone. */
+.nalu-supporttext { display: inline-flex; align-items: center; gap: 4px; font-family: var(--typography-body-font-family); font-size: var(--typography-body-size-small); line-height: var(--typography-body-line-height-small); font-weight: 400; color: var(--colors-neutral-30); }
+.nalu-supporttext-icon { width: var(--dimension-component-l); height: var(--dimension-component-l); flex: 0 0 auto; color: inherit; }
+.nalu-supporttext--neutral { color: var(--colors-neutral-30); }
+.nalu-supporttext--warning { color: var(--colors-primary-30); }
+.nalu-supporttext--error   { color: var(--colors-danger-50); }
+.nalu-supporttext--success { color: var(--colors-success-50); }
+
+/* ── Dropdown family (Dropdown · DropdownItem · DropdownInput) ───────────────*/
+/* Menu surface */
+.nalu-dropdown { display: flex; flex-direction: column; gap: var(--dimension-component-2-xs); background: var(--colors-white); border: 0 solid transparent; border-radius: var(--dimension-component-l); padding: var(--dimension-component-m); box-shadow: var(--elevation-lg); }
+/* Menu row */
+.nalu-dropdownitem { all: unset; box-sizing: border-box; cursor: pointer; display: flex; align-items: center; gap: var(--dimension-component-xs); padding: var(--dimension-component-m); border-radius: var(--dimension-component-xs); background: transparent; font-family: var(--typography-label-font-family); transition: background .2s; }
+.nalu-dropdownitem:hover, .nalu-dropdownitem:focus-visible { background: var(--colors-neutral-90); }
+.nalu-dropdownitem--selected { background: var(--colors-neutral-90); }
+.nalu-dropdownitem-start { display: flex; align-items: center; flex-shrink: 0; }
+.nalu-dropdownitem-icon { width: var(--dimension-component-xl); height: var(--dimension-component-xl); color: var(--colors-neutral-5); flex-shrink: 0; }
+/* Size start/end glyphs robustly even if the consumer's element doesn't forward the injected class */
+.nalu-dropdownitem-start > svg, .nalu-dropdownitem-end > svg { width: var(--dimension-component-xl); height: var(--dimension-component-xl); color: var(--colors-neutral-5); flex-shrink: 0; }
+.nalu-dropdownitem-middle { flex: 1 1 auto; min-width: 0; }
+.nalu-dropdownitem-label { display: block; color: var(--colors-neutral-5); font-size: var(--typography-body-size-large); font-weight: var(--typography-label-font-weight-medium); line-height: var(--typography-body-line-height-large); }
+.nalu-dropdownitem-desc { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; color: var(--colors-neutral-30); font-size: var(--typography-body-size-small); font-weight: 400; line-height: var(--typography-body-line-height-small); }
+.nalu-dropdownitem-end { margin-left: auto; flex-shrink: 0; display: flex; align-items: center; }
+
+/* Select control (DropdownInput) — reuses .nalu-field / .nalu-field-label */
+.nalu-ddinput { position: relative; }
+.nalu-ddinput-control { display: flex; align-items: center; gap: 8px; height: 48px; padding: 0 14px; background: var(--background-surface-elevated); border: 1.5px solid var(--border-default); border-radius: 12px; transition: border-color .15s, background .15s; }
+.nalu-ddinput-control:hover { border-color: var(--content-subtle); }
+.nalu-ddinput-control:focus-within { border-color: var(--brand-primary); outline: 2px solid var(--brand-primary); outline-offset: 1px; }
+.nalu-ddinput-control--error { border-color: var(--colors-danger-50); }
+.nalu-ddinput-control--disabled { background: var(--colors-neutral-95); border-color: var(--border-subtle); pointer-events: none; }
+.nalu-ddinput-control--readonly { background: var(--colors-neutral-98); }
+.nalu-ddinput-button { all: unset; box-sizing: border-box; flex: 1; min-width: 0; display: flex; align-items: center; cursor: pointer; font-family: var(--typography-body-font-family); font-size: 14px; }
+.nalu-ddinput-control--disabled .nalu-ddinput-button { cursor: not-allowed; }
+.nalu-ddinput-value { color: var(--content-default); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.nalu-ddinput-placeholder { color: var(--content-subtle); }
+.nalu-ddinput-control--error .nalu-ddinput-placeholder { color: var(--colors-danger-50); }
+.nalu-ddinput-chevron { display: flex; align-items: center; flex-shrink: 0; color: var(--content-subtle); transition: transform .2s; }
+.nalu-ddinput-chevron svg { width: 20px; height: 20px; }
+.nalu-ddinput-chevron--open { transform: rotate(180deg); }
+.nalu-ddinput-menu { position: absolute; top: 100%; left: 0; right: 0; z-index: 1000; margin-top: 4px; max-height: 540px; overflow-y: auto; }
+
+/* ── Section (layout band) ──────────────────────────────────────────────────
+   Background (appearance) + vertical/horizontal padding (size); inner container
+   centres content and can cap to the content max-width.                       */
+.nalu-section { box-sizing: border-box; width: 100%; }
+.nalu-section--primary   { background: var(--background-surface-elevated); }
+.nalu-section--secondary { background: var(--background-surface-default); }
+.nalu-section--tertiary  { background: var(--background-surface-lowered); }
+.nalu-section-container { box-sizing: border-box; margin: 0 auto; width: 100%; }
+.nalu-section-container:empty { display: none; }
+.nalu-section-container--max { max-width: 1180px; }
+/* size ramp — vertical = content scale, horizontal = page gutter */
+.nalu-section--large  { padding: var(--dimension-component-4-xl) 72px; }
+.nalu-section--medium { padding: var(--dimension-component-2-xl) var(--dimension-component-5-xl); }
+.nalu-section--small  { padding: var(--dimension-component-l) var(--dimension-component-5-xl); }
+.nalu-section--none   { padding: 0; }
+@media (max-width: 768px) { .nalu-section--large { padding-left: var(--dimension-component-2-xl); padding-right: var(--dimension-component-2-xl); } }
+@media (max-width: 480px) { .nalu-section--large, .nalu-section--medium, .nalu-section--small { padding-left: var(--dimension-component-l); padding-right: var(--dimension-component-l); } }
+.nalu-section--pt-off { padding-top: 0; }
+.nalu-section--pb-off { padding-bottom: 0; }
+.nalu-section--ph-off { padding-left: 0; padding-right: 0; }
+
+/* ── Island (contained surface) ─────────────────────────────────────────────
+   Card-like region: bg + padding + radius (+optional border). Optional heading
+   row (title + top-right button) and body precede the children.               */
+.nalu-island { box-sizing: border-box; display: flex; flex-direction: column; border: 0 solid var(--colors-white); }
+.nalu-island--primary   { background: var(--background-surface-elevated); }
+.nalu-island--secondary { background: var(--background-surface-default); }
+.nalu-island--tertiary  { background: var(--background-surface-lowered); }
+.nalu-island--none      { background: transparent; }
+/* emphasis (1.184.0) — from token pipeline: e-m differs from e-l only for
+   secondary (darker neutral-90 fill); other appearances are identical */
+.nalu-island--em.nalu-island--secondary { background: hsl(0 0% 90.196%); }
+.nalu-island--large  { padding: var(--dimension-component-5-xl); border-radius: var(--dimension-component-2-xl); }
+.nalu-island--medium { padding: var(--dimension-component-2-xl); border-radius: var(--dimension-component-l); }
+.nalu-island--small  { padding: var(--dimension-component-l); border-radius: var(--dimension-component-l); }
+.nalu-island--xs     { padding: 4px; border-radius: 16px; }
+.nalu-island--none   { padding: 0; border-radius: 0; }
+/* heading gap (only when heading + children both present) */
+.nalu-island--large  .nalu-island-heading { margin-bottom: var(--dimension-component-5-xl); }
+.nalu-island--medium .nalu-island-heading { margin-bottom: var(--dimension-component-2-xl); }
+.nalu-island--small  .nalu-island-heading,
+.nalu-island--xs     .nalu-island-heading,
+.nalu-island--none   .nalu-island-heading { margin-bottom: var(--dimension-component-l); }
+.nalu-island-titlerow { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.nalu-island-title { flex: 1 1 200px; min-width: 200px; margin: 0; color: var(--colors-neutral-5); font-family: var(--typography-headline-font-family); font-weight: 500; font-size: var(--typography-headline-size-small); line-height: var(--typography-headline-line-height-small); }
+.nalu-island-action { flex-shrink: 0; }
+.nalu-island-body { margin: var(--dimension-component-l) 0 0; color: var(--colors-neutral-5); font-family: var(--typography-body-font-family); font-weight: 400; font-size: var(--typography-body-size-large); line-height: var(--typography-body-line-height-large); }
+
+/* ── Accordion ───────────────────────────────────────────────────────────── */
+.nalu-accordion { width: 100%; overflow: hidden; border-radius: 0; border-bottom: 1px solid var(--colors-neutral-90); }
+.nalu-accordion-head { all: unset; box-sizing: border-box; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; padding: var(--dimension-component-xl) var(--dimension-component-l); background: transparent; font-family: var(--typography-title-font-family-small); font-weight: 700; font-size: 14px; line-height: 18px; color: var(--colors-neutral-5); text-align: left; user-select: none; transition: background .2s ease; }
+.nalu-accordion-head:not(:disabled):hover { background: var(--colors-neutral-95); }
+.nalu-accordion-head:disabled, .nalu-accordion-head[aria-disabled="true"] { cursor: not-allowed; color: var(--colors-neutral-60); }
+.nalu-accordion-title { margin: 0; font: inherit; }
+.nalu-accordion-trigger { width: var(--dimension-component-xl); height: var(--dimension-component-xl); display: flex; align-items: center; justify-content: center; flex: 0 0 auto; color: var(--colors-neutral-5); opacity: .8; }
+.nalu-accordion-trigger .nalu-icon { width: 20px; height: 20px; }
+.nalu-accordion[data-disabled="true"] .nalu-accordion-trigger { color: var(--colors-neutral-60); }
+.nalu-accordion-content { font-family: var(--typography-body-font-family); font-size: 14px; line-height: 20px; color: var(--content-default); }
+.nalu-accordion-content--open { padding: var(--dimension-component-xs) var(--dimension-component-l) var(--dimension-component-xl); }
+.nalu-accordion-content--closed { display: none; }
+
+/* ── Snackbar ────────────────────────────────────────────────────────────── */
+.nalu-snackbar { display: inline-flex; align-items: center; gap: 10px; background: var(--colors-neutral-5); color: #fff; padding: 13px 20px; border-radius: 99px; box-shadow: var(--elevation-lg); font-family: var(--typography-body-font-family); font-size: 14px; font-weight: 600; }
+.nalu-snackbar .nalu-icon { width: 20px; height: 20px; }
+/* 1.201.0 (NALU-2326) — full width below the tablet breakpoint (648px) */
+@media (max-width: 647px) { .nalu-snackbar { display: flex; width: auto; left: 16px; right: 16px; box-sizing: border-box; } }
+.nalu-snackbar a, .nalu-snackbar .nalu-snackbar-action { color: var(--colors-primary-60); font-weight: 700; cursor: pointer; text-decoration: none; margin-left: 4px; }
+
+/* ── SystemMessage ───────────────────────────────────────────────────────── */
+.nalu-sysmsg { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; border-radius: var(--cornerRadius); font-family: var(--typography-body-font-family); font-size: 14px; line-height: 20px; }
+.nalu-sysmsg .nalu-icon { width: 22px; height: 22px; flex: 0 0 22px; }
+.nalu-sysmsg b { display: block; font-weight: 700; }
+.nalu-sysmsg--info { background: var(--colors-quaternary-95); color: var(--colors-quaternary-40); }
+.nalu-sysmsg--success { background: var(--colors-success-95); color: var(--colors-success-50); }
+.nalu-sysmsg--error { background: var(--colors-danger-95); color: var(--colors-danger-40); }
+.nalu-sysmsg--warning { background: var(--colors-warning-90); color: var(--warning-foreground); }
+
+/* ── Tooltip ─────────────────────────────────────────────────────────────── */
+.nalu-tooltip-wrap { position: relative; display: inline-flex; }
+.nalu-tooltip { position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%); background: var(--colors-neutral-5); color: #fff; padding: 8px 12px; border-radius: 8px; font-family: var(--typography-body-font-family); font-size: 13px; line-height: 18px; white-space: nowrap; box-shadow: var(--elevation-md); }
+.nalu-tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: var(--colors-neutral-5); }
+
+/* ── EmptyState ──────────────────────────────────────────────────────────── */
+.nalu-empty { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--dimension-component-xs); }
+.nalu-empty--large { padding: 24px; }
+.nalu-empty--small { padding: 16px; }
+.nalu-empty-illustration { display: flex; align-items: center; justify-content: center; margin-bottom: 6px; }
+.nalu-empty--large .nalu-empty-illustration-icon { width: 48px; height: 48px; }
+.nalu-empty--small .nalu-empty-illustration-icon { width: 32px; height: 32px; }
+.nalu-empty--neutral .nalu-empty-illustration-icon { color: var(--colors-neutral-30); }
+.nalu-empty--success .nalu-empty-illustration-icon { color: var(--colors-success-50); }
+.nalu-empty--warning .nalu-empty-illustration-icon { color: var(--colors-primary-30); }
+.nalu-empty--error   .nalu-empty-illustration-icon { color: var(--colors-danger-50); }
+.nalu-empty-content { display: flex; flex-direction: column; gap: 4px; }
+.nalu-empty-title { margin: 0; font-family: var(--typography-title-font-family-large); font-size: 18px; font-weight: 700; color: var(--content-default); }
+.nalu-empty--small .nalu-empty-title { font-size: 16px; }
+.nalu-empty-subtitle { margin: 0; font-family: var(--typography-body-font-family); font-size: 14px; color: var(--content-subtle); max-width: 320px; }
+.nalu-empty-actions { display: flex; gap: 8px; justify-content: center; margin-top: 10px; flex-wrap: wrap; }
+
+/* ── ListItem ────────────────────────────────────────────────────────────── */
+.nalu-list { display: flex; flex-direction: column; background: var(--background-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--cornerRadius); overflow: hidden; width: 100%; }
+.nalu-listitem { display: flex; align-items: flex-start; gap: 14px; padding: 14px 16px; box-sizing: border-box; width: 100%; }
+.nalu-listitem--interactive { cursor: pointer; transition: background .12s; }
+.nalu-listitem--interactive:hover { background: var(--background-surface-default); }
+.nalu-listitem-start { display: flex; align-items: center; justify-content: center; flex: 0 0 auto; color: var(--content-default); }
+.nalu-listitem-start .nalu-icon { width: 22px; height: 22px; }
+.nalu-listitem-common { flex: 1; min-width: 0; display: flex; align-items: center; gap: 12px; }
+.nalu-listitem-content { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.nalu-listitem-titlerow { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.nalu-listitem-title { font-family: var(--typography-title-font-family-large); font-weight: 700; font-size: 15px; line-height: 24px; color: var(--content-default); min-width: 0; }
+.nalu-listitem-value { font-family: var(--typography-title-font-family-large); font-weight: 700; font-size: 15px; color: var(--content-default); flex: 0 0 auto; }
+.nalu-listitem-sub { font-family: var(--typography-body-font-family); font-size: 14px; line-height: 24px; color: var(--content-subtle); }
+.nalu-listitem-middle { margin-top: 6px; }
+.nalu-listitem-end { flex: 0 0 auto; color: var(--content-subtle); display: flex; align-items: center; }
+.nalu-listitem-end .nalu-icon { width: 20px; height: 20px; }
+
+/* ── CircularProgress ────────────────────────────────────────────────────── */
+.nalu-progress { display: inline-block; }
+.nalu-progress svg { transform: rotate(-90deg); }
+.nalu-progress-track { stroke: var(--colors-neutral-90); }
+.nalu-progress-bar { stroke: var(--brand-primary); stroke-linecap: round; transition: stroke-dashoffset .4s; }
+.nalu-progress--spin svg { animation: nalu-spin 1s linear infinite; }
+
+/* ── PaginationIndicator ─────────────────────────────────────────────────── */
+.nalu-dots { display: inline-flex; align-items: center; gap: 7px; }
+.nalu-dot { width: 8px; height: 8px; border-radius: 99px; background: var(--colors-neutral-80); transition: background .2s, width .2s; }
+.nalu-dot--active { background: var(--brand-primary); width: 22px; }
+
+/* ── Dialog ──────────────────────────────────────────────────────────────────
+   Modal surface on the native <dialog>. Composed of header / content / footer.
+   Tokens: radius = component-XL (24); header & footer padding = component-XL;
+   overlay gutter = component-L (16); widths small/medium/large = 424/600/920. */
+.nalu-dialog {
+  background-color: var(--background-surface-elevated);
+  border: none;
+  border-radius: var(--dimension-component-xl);
+  padding: 0;
+  overflow: hidden;
+  color: var(--content-default);
+  box-shadow: 0 24px 48px -12px rgba(13, 13, 13, 0.18), 0 0 0 1px var(--border-default);
+  max-height: calc(100dvh - var(--dimension-component-l) - var(--dimension-component-l));
+  /* mobile-first: fill the viewport minus the overlay gutter */
+  width: calc(100% - var(--dimension-component-l) - var(--dimension-component-l));
+}
+.nalu-dialog--modal {
+  position: relative;
+  justify-self: center;
+}
+.nalu-dialog--modal::backdrop { background-color: rgba(13, 13, 13, 0.5); }
+.nalu-dialog--nonmodal {
+  position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  margin: 0; z-index: 1100;
+}
+.nalu-dialog-backdrop { position: fixed; inset: 0; background-color: rgba(13, 13, 13, 0.5); z-index: 1100; }
+
+/* size caps — apply from the small-tablet breakpoint up (mobile stays full-width) */
+@media (min-width: 600px) {
+  .nalu-dialog--small  { width: var(--device-dialog-narrow-width, 424px); }
+  .nalu-dialog--medium { width: var(--device-dialog-regular-width, 600px); }
+  .nalu-dialog--large  { width: var(--device-dialog-wide-width, 920px); }
+}
+
+.nalu-dialog-scroll { display: flex; flex-direction: column; overflow-y: auto; max-height: calc(100dvh - var(--dimension-component-l) - var(--dimension-component-l)); min-height: 0; }
+
+.nalu-dialog-close { position: absolute; top: 0; right: 0; z-index: 1; margin-top: 16px; margin-right: 16px; }
+
+.nalu-dialog-header {
+  font-family: var(--typography-headline-font-family);
+  font-size: var(--typography-headline-size-small);
+  line-height: var(--typography-headline-line-height-small);
+  font-weight: var(--typography-headline-font-weight-large);
+  padding: var(--dimension-component-xl);
+  min-height: calc(var(--typography-headline-line-height-small) + var(--dimension-component-xl) + var(--dimension-component-xl));
+  box-sizing: border-box;
+}
+.nalu-dialog-footer {
+  display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 8px;
+  padding: var(--dimension-component-xl);
+}
+/* hasSpacings spacers (applied to DialogContent) */
+.nalu-dialog-content--top-spacer    { padding-top: var(--dimension-component-xl); }
+.nalu-dialog-content--bottom-spacer { padding-bottom: var(--dimension-component-xl); }
+.nalu-dialog-content--size-spacer   { padding-left: var(--dimension-component-xl); padding-right: var(--dimension-component-xl); }
+
+/* ══ Cards ═══════════════════════════════════════════════════════════════════
+   BaseCard — the foundation surface every card variant builds on. */
+.nalu-basecard { box-sizing: border-box; border-style: solid; border-width: var(--baseCard-border, 1px); border-color: var(--colors-transparent-black-alpha-10); border-radius: var(--baseCard-radius, 16px); overflow: hidden; }
+.nalu-basecard--primary   { background: var(--colors-white); }
+.nalu-basecard--secondary { background: var(--colors-neutral-95); }
+.nalu-basecard--none      { background: transparent; }
+.nalu-basecard--border-off { border-width: 0; border-color: transparent; }
+.nalu-basecard--padded { padding: var(--dimension-component-l); }
+.nalu-basecard--interactive {
+  cursor: pointer; width: 100%; appearance: none; margin: 0; text-align: inherit; font: inherit; color: inherit;
+  transition: background-color .2s, border-color .2s, box-shadow .2s;
+}
+.nalu-basecard--interactive:hover { box-shadow: 0 0 0 6px var(--colors-transparent-black-alpha-8); }
+.nalu-basecard--interactive:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--colors-primary-55), 0 0 0 6px var(--colors-transparent-black-alpha-8); }
+.nalu-basecard--interactive:active { box-shadow: 0 0 0 2px var(--colors-transparent-black-alpha-8); }
+
+/* HorizontalBaseCard — 4-row offer grid (caption | content [| cta]) */
+.nalu-hcard {
+  cursor: pointer; width: 100%; box-sizing: border-box;
+  display: grid; grid-template-rows: repeat(4, fit-content(100%));
+  grid-template-columns: fit-content(100%) minmax(0, 1fr);
+  row-gap: 0; column-gap: 24px;
+  background: var(--background-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  padding: var(--dimension-component-xl); border-radius: var(--dimension-component-l);
+  transition: box-shadow .2s, transform .2s;
+}
+.nalu-hcard:hover { box-shadow: var(--elevation-md); }
+.nalu-hcard:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--colors-primary-55); }
+.nalu-hcard--expired { box-shadow: var(--elevation-xs); }
+.nalu-hcard--expired .nalu-hcard-title, .nalu-hcard--expired .nalu-hcard-caption { color: var(--colors-transparent-black-alpha-50); }
+.nalu-hcard-header { grid-row: 1; grid-column: 2; justify-self: stretch; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: flex-start; padding-bottom: var(--dimension-component-l); }
+.nalu-hcard-countdownwrap { min-width: 0; }
+.nalu-hcard-subtitle { flex-shrink: 0; margin: 0; white-space: nowrap; color: var(--content-subtle); font-family: var(--typography-body-font-family); font-size: 14px; line-height: 24px; font-weight: 400; }
+.nalu-hcard-caption { grid-row: 2 / span 2; grid-column: 1; align-self: start; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 8px; overflow: hidden; }
+.nalu-hcard-titlewrap { grid-row: 2; grid-column: 2; justify-self: stretch; min-width: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: var(--dimension-component-xl); }
+.nalu-hcard-title { margin: 0; color: var(--colors-neutral-5); font-family: var(--typography-title-font-family-large); font-size: 20px; line-height: 24px; font-weight: 700; word-break: break-word; }
+.nalu-hcard-cta { display: none; }
+.nalu-hcard-tags { grid-row: 3; grid-column: 2; justify-self: stretch; display: flex; flex-wrap: wrap; align-items: center; gap: var(--dimension-component-xs); padding-top: var(--dimension-component-l); padding-bottom: var(--dimension-component-l); }
+.nalu-hcard-footer { grid-row: 4; grid-column: 1 / -1; justify-self: stretch; display: flex; flex-direction: column; align-items: stretch; gap: var(--dimension-component-l); }
+.nalu-hcard-content { width: 100%; font-family: var(--typography-body-font-family); font-size: 14px; line-height: 16px; font-weight: 400; padding-top: 16px; }
+@media (min-width: 648px) {
+  .nalu-hcard { grid-template-columns: fit-content(100%) minmax(0, 2fr) fit-content(100%); }
+  .nalu-hcard-header { grid-column: 2 / span 2; }
+  .nalu-hcard-tags { grid-column: 2 / -1; }
+  .nalu-hcard-footer { grid-column: 2 / -1; }
+  .nalu-hcard-cta { display: flex; flex-direction: column; justify-content: center; align-items: center; grid-row: 2; grid-column: 3; padding: 0 var(--dimension-component-l); }
+}
+
+/* VerticalBaseCard — portrait offer tile (banner · label · info · cta/countdown) */
+.nalu-vcard { cursor: pointer; width: 100%; height: 100%; box-sizing: border-box; display: flex; flex-direction: column; align-items: flex-start; background: transparent; border-radius: 0; overflow: hidden; }
+.nalu-vcard-content { width: 100%; display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.nalu-vcard-bottom { width: 100%; display: flex; flex-direction: column; margin-top: auto; }
+.nalu-vcard-banner { position: relative; width: 100%; overflow: hidden; border-radius: var(--dimension-component-l); border: 1px solid var(--colors-transparent-black-alpha-10); margin-bottom: var(--dimension-component-2-xs); box-sizing: border-box; background: var(--colors-white); }
+/* banner content fills the 2.42:1 frame exactly and is clipped (no overflow) */
+.nalu-vcard-banner > .nalu-ratio { position: relative; }
+.nalu-vcard-banner > .nalu-ratio > * { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.nalu-vcard-tagwrap { position: absolute; top: 12px; left: 16px; z-index: 1; }
+.nalu-vcard-label { width: 100%; text-align: right; height: var(--typography-body-line-height-medium); font-family: var(--typography-body-font-family); font-size: var(--typography-body-size-medium); line-height: var(--typography-body-line-height-medium); font-weight: 400; color: var(--colors-neutral-30); }
+.nalu-vcard-info { width: 100%; display: flex; flex-direction: row; gap: var(--dimension-component-xs); margin-bottom: var(--dimension-component-l); }
+.nalu-vcard-logo { display: flex; flex-shrink: 0; flex-grow: 0; }
+.nalu-vcard-texts { display: flex; flex-direction: column; flex: 1 1 auto; min-width: 0; }
+.nalu-vcard-subtitle { margin: 0 0 4px; font-family: var(--typography-body-font-family); font-size: var(--typography-body-size-medium); line-height: var(--typography-body-line-height-medium); font-weight: 400; color: var(--colors-neutral-5); }
+.nalu-vcard-title { margin: 0; font-family: var(--typography-title-font-family-small); font-size: var(--typography-title-size-medium); line-height: var(--typography-title-line-height-medium); font-weight: 700; color: var(--colors-neutral-5); }
+.nalu-vcard-cta { width: 100%; display: flex; justify-content: center; }
+.nalu-vcard-countdown { width: 100%; text-align: center; height: var(--typography-body-line-height-small); font-family: var(--typography-body-font-family); font-size: var(--typography-body-size-small); line-height: var(--typography-body-line-height-small); font-weight: 400; color: var(--colors-neutral-5); margin-top: var(--dimension-component-l); }
+
+/* VerticalBaseCardLite — slim bordered portrait tile (banner · label · texts) */
+.nalu-vcardlite { box-sizing: border-box; cursor: pointer; width: 100%; display: flex; flex-direction: column; align-items: flex-start; background: var(--colors-white); border-radius: var(--dimension-component-l); overflow: hidden; }
+.nalu-vcardlite--border { border: 1px solid var(--colors-transparent-black-alpha-10); }
+.nalu-vcardlite-banner { position: relative; width: 100%; overflow: hidden; border-bottom: 1px solid var(--colors-transparent-black-alpha-10); }
+.nalu-vcardlite-banner img, .nalu-vcardlite-banner .nalu-ratio > * { width: 100%; height: 100%; object-fit: cover; display: block; }
+.nalu-vcardlite-tagwrap { position: absolute; top: 12px; left: 16px; }
+.nalu-vcardlite-label { display: flex; justify-content: flex-end; align-items: center; gap: 8px; align-self: stretch; height: var(--typography-body-line-height-medium); font-family: var(--typography-body-font-family); font-size: var(--typography-body-size-medium); line-height: var(--typography-body-line-height-medium); font-weight: 400; color: var(--colors-neutral-30); padding: var(--dimension-component-2-xs) var(--dimension-component-l) 0 0; }
+.nalu-vcardlite-texts { display: flex; flex-direction: column; gap: 4px; padding: 0 var(--dimension-component-l) var(--dimension-component-l); }
+.nalu-vcardlite-subtitle { margin: 0; font-family: var(--typography-body-font-family); font-size: var(--typography-body-size-medium); line-height: var(--typography-body-line-height-medium); font-weight: 400; color: var(--colors-neutral-5); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nalu-vcardlite-title { margin: 0; font-family: var(--typography-title-font-family-small); font-size: var(--typography-title-size-medium); line-height: var(--typography-title-line-height-medium); font-weight: 700; color: var(--colors-neutral-5); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; max-height: 72px; }
+.nalu-vcardlite-text { margin: 0; min-height: var(--typography-body-line-height-small); font-family: var(--typography-body-font-family); font-size: var(--typography-body-size-small); line-height: var(--typography-body-line-height-small); font-weight: 400; color: var(--colors-neutral-5); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+
+/* ============================================================================
+   SITE CHROME — header (logo · search · account · subnav mega-menu) + footer.
+   Promoted from the igraal-desktop template so SiteHeader / SiteFooter ship in
+   the bundle and any page gets the REAL, working chrome (hover mega-menus,
+   account & search dropdowns, full footer). All values token-driven → [data-brand]
+   reskins. Used by components/chrome/SiteHeader.jsx & SiteFooter.jsx.
+   ============================================================================ */
+.nalu-chrome-wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; box-sizing: border-box; }
+
+/* DesktopShell = SiteHeader + page content + SiteFooter (one wrapper). */
+.nalu-desktop-shell { min-height: 100%; background: var(--background-surface-default, #fff); }
+
+/* ---- Header --------------------------------------------------------------- */
+.nalu-topbar { position: sticky; top: 0; z-index: 21; background: #fff; }
+.nalu-header-row { display: flex; align-items: center; gap: 24px; height: 76px; padding-left: 0; padding-right: 0; }
+.nalu-logo { display: inline-flex; align-items: center; gap: 9px; background: none; border: none; padding: 0; cursor: pointer; flex: 0 0 auto; }
+.nalu-logo-svg { height: 34px; width: auto; display: block; }
+.nalu-foot-brand .nalu-logo-svg { height: 34px; }
+.nalu-logo-wm { font-family: var(--typography-title-font-family-large); font-weight: 700; font-size: 26px; letter-spacing: -.02em; color: var(--brand-primary, #ff7100); }
+/* BrandMark aspect tuning: the Coupons.com lockup is a wide, short mark
+   (viewBox 152×26) — cap its height so it doesn't dwarf the other logos. */
+.nalu-logo-svg.nalu-brandmark--coupons { height: 24px; }
+.igm-logo-svg.nalu-brandmark--coupons { height: 20px; }
+.igm-footer .igm-logo-svg.nalu-brandmark--coupons { height: 18px; }
+
+.nalu-search-wrap { flex: 1 1 auto; max-width: 560px; position: relative; }
+.nalu-search { width: 100%; box-sizing: border-box; display: flex; align-items: center; gap: 10px; height: 46px; padding: 0 18px; border: 1.5px solid var(--border-default); border-radius: 99px; color: var(--content-subtle); background: var(--background-surface-elevated); transition: border-color .15s; }
+.nalu-search:focus-within, .nalu-search-open { border-color: var(--brand-primary); }
+.nalu-search .nalu-icon { width: 20px; height: 20px; flex: 0 0 auto; }
+.nalu-search input { all: unset; flex: 1; min-width: 0; font-family: var(--typography-body-font-family); font-size: 15px; color: var(--content-default); }
+
+/* search focus dropdown — suggested brands (same pattern as the mobile search overlay) */
+.nalu-search-panel { position: absolute; top: calc(100% + 12px); left: 0; right: 0; z-index: 40; background: #fff; border: 1px solid var(--border-subtle); border-radius: 18px; box-shadow: 0 26px 48px -16px rgba(0,0,0,.22); padding: 12px 0; max-height: min(72vh, 560px); overflow-y: auto; }
+.nalu-search-heading { margin: 4px 0 6px; padding: 8px 20px 0; font-family: var(--typography-title-font-family-large); font-weight: 700; font-size: 18px; letter-spacing: -.01em; color: var(--content-default); }
+.nalu-brandresults { list-style: none; margin: 0; padding: 0; }
+.nalu-brandresult { display: flex; align-items: center; gap: 16px; padding: 10px 16px; margin: 0 8px; border-radius: 12px; cursor: pointer; transition: background-color .12s; }
+.nalu-brandresult:hover { background: var(--colors-transparent-black-alpha-8); }
+.nalu-brandresult-logo { flex: 0 0 auto; width: 52px; height: 40px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; background: var(--colors-transparent-black-alpha-4, rgba(0,0,0,.04)); color: var(--content-subtle); font-family: var(--typography-title-font-family-large); font-weight: 700; font-size: 18px; }
+.nalu-brandresult-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.nalu-brandresult-name { font-family: var(--typography-body-font-family); font-weight: 600; font-size: 16px; line-height: 20px; color: var(--content-default); }
+.nalu-brandresult-meta { font-family: var(--typography-body-font-family); font-size: 13px; line-height: 18px; color: var(--content-subtle); white-space: nowrap; }
+
+.nalu-header-actions { margin-left: auto; display: flex; align-items: center; gap: 8px; flex: 0 0 auto; }
+.nalu-navlink { display: inline-flex; align-items: center; gap: 7px; padding: 8px 14px; border-radius: 99px; background: none; border: none; cursor: pointer; font-family: var(--typography-body-font-family); font-size: 15px; font-weight: 500; color: var(--content-default); text-decoration: none; }
+.nalu-navlink:hover { background: var(--colors-transparent-black-alpha-8); }
+.nalu-navlink .nalu-icon { width: 20px; height: 20px; }
+
+/* logged-in top-right: inline balance summary + account avatar */
+.nalu-balance { margin: 0; display: flex; align-items: center; gap: 28px; padding-right: 8px; }
+.nalu-balance-row { display: flex; align-items: baseline; gap: 8px; white-space: nowrap; }
+.nalu-balance-row dt { margin: 0; font-family: var(--typography-body-font-family); font-size: 15px; font-weight: 400; color: var(--content-subtle); }
+.nalu-balance-row dd { margin: 0; font-family: var(--typography-title-font-family-large); font-size: 16px; font-weight: 700; color: var(--content-default); }
+.nalu-balance-pending-row dt, .nalu-balance-pending-row dd { color: var(--colors-neutral-30); }
+.nalu-avatar { all: unset; box-sizing: border-box; cursor: pointer; flex: 0 0 auto; width: 44px; height: 44px; border-radius: 99px; background: var(--content-default); color: #fff; display: inline-flex; align-items: center; justify-content: center; transition: opacity .15s; }
+.nalu-avatar:hover { opacity: .88; }
+.nalu-avatar-glyph { display: block; }
+
+/* account dropdown */
+.nalu-account { position: relative; display: inline-flex; }
+.nalu-account-menu { position: absolute; top: calc(100% + 12px); right: 0; z-index: 40; min-width: 300px; background: #fff; border: 1px solid var(--border-subtle); border-radius: 18px; box-shadow: 0 26px 48px -16px rgba(0,0,0,.22); padding: 12px 8px; }
+.nalu-acctlist { list-style: none; margin: 0; padding: 0; }
+.nalu-acct-logout { margin-top: 6px; }
+.nalu-acctitem { display: flex; align-items: center; gap: 16px; padding: 11px 16px; border-radius: 12px; white-space: nowrap; font-family: var(--typography-body-font-family); font-size: 16px; line-height: 22px; color: var(--content-default); text-decoration: none; transition: background-color .12s; }
+.nalu-acctitem:hover { background: var(--colors-transparent-black-alpha-8); }
+.nalu-acctitem .nalu-icon { width: 22px; height: 22px; flex: 0 0 auto; color: var(--content-default); }
+
+/* secondary category nav */
+.nalu-subnav { border-bottom: 1px solid var(--border-default); background: #fff; position: relative; }
+.nalu-subnav-row { display: flex; align-items: center; gap: 6px; height: 56px; overflow-x: auto; padding-left: 0; padding-right: 0; }
+.nalu-cat { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; padding: 9px 14px; border-radius: 12px; font-family: var(--typography-body-font-family); font-size: 14px; font-weight: 400; line-height: 20px; color: var(--content-default); text-decoration: none; transition: background-color .15s; }
+.nalu-cat:hover, .nalu-cat-open { background: var(--colors-transparent-black-alpha-8); }
+.nalu-cat .nalu-icon { width: 18px; height: 18px; transition: transform .18s ease; }
+.nalu-cat-open .nalu-icon { transform: rotate(180deg); }
+
+/* hover mega-menu */
+.nalu-mega-wrap { position: absolute; top: 100%; left: 0; z-index: 30; padding-top: 1px; }
+.nalu-mega { width: max-content; max-width: 100%; box-sizing: border-box; background: #fff; border: 1px solid var(--border-subtle); border-radius: 18px; box-shadow: 0 26px 48px -16px rgba(0,0,0,.22); padding: 12px; }
+.nalu-mega-stores { display: grid; grid-auto-flow: column; grid-template-rows: repeat(10, auto); gap: 0 48px; }
+.nalu-mega-links { display: flex; flex-direction: column; gap: 0; }
+.nalu-mega-link { font-family: var(--typography-body-font-family); font-size: 15px; line-height: 20px; color: var(--content-default); text-decoration: none; white-space: nowrap; padding: 11px 16px; border-radius: 12px; transition: background-color .12s; }
+.nalu-mega-link:hover { background: var(--colors-transparent-black-alpha-8); }
+
+/* two-level category flyout (Popular categories) */
+.nalu-mega-cats { display: flex; gap: 8px; }
+.nalu-catcol { display: flex; flex-direction: column; min-width: 304px; }
+.nalu-catrow { display: flex; align-items: center; justify-content: space-between; gap: 16px; white-space: nowrap; padding: 11px 16px; border-radius: 12px; font-family: var(--typography-body-font-family); font-size: 15px; line-height: 20px; color: var(--content-default); text-decoration: none; transition: background-color .12s; }
+.nalu-catrow:hover, .nalu-catrow-active { background: var(--colors-transparent-black-alpha-8); }
+.nalu-catrow .nalu-icon { width: 18px; height: 18px; flex: 0 0 auto; color: var(--content-subtle); transform: rotate(-90deg); }
+.nalu-subcol { display: flex; flex-direction: column; gap: 2px; min-width: 248px; padding: 4px 8px 8px; margin-left: 8px; border-left: 1px solid var(--border-subtle); }
+.nalu-subcol-title { margin: 0 0 6px; padding: 11px 16px 6px; white-space: nowrap; font-family: var(--typography-title-font-family-large); font-size: 16px; font-weight: 700; line-height: 20px; color: var(--content-default); }
+.nalu-sublink { padding: 11px 16px; border-radius: 12px; white-space: nowrap; font-family: var(--typography-body-font-family); font-size: 15px; line-height: 20px; color: var(--content-default); text-decoration: none; transition: background-color .12s; }
+.nalu-sublink:hover { background: var(--colors-transparent-black-alpha-8); }
+
+/* ---- Footer (matches the live desktop footer) ----------------------------- */
+.nalu-footer-outer { padding: 8px 0 40px; }
+.nalu-footer { background: var(--colors-neutral-95, #f1f1f0); border-radius: 24px; padding: 56px 64px; }
+.nalu-foot-top { display: flex; justify-content: space-between; gap: 64px; }
+.nalu-foot-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 26px; max-width: 460px; }
+.nalu-foot-badges { display: flex; gap: 14px; }
+.nalu-badge { display: inline-flex; align-items: center; gap: 10px; background: #000; color: #fff; border-radius: 12px; padding: 10px 18px; text-decoration: none; }
+.nalu-badge-glyph { font-size: 26px; line-height: 1; }
+.nalu-badge-text { display: flex; flex-direction: column; line-height: 1.1; }
+.nalu-badge-text small { font-size: 11px; opacity: .92; }
+.nalu-badge-text strong { font-family: var(--typography-title-font-family-large); font-size: 19px; font-weight: 700; letter-spacing: -.01em; }
+.nalu-foot-tagline { margin: 0; font-family: var(--typography-body-font-family); font-size: 16px; line-height: 24px; font-weight: 400; color: var(--content-default); max-width: 34ch; }
+.nalu-socials { display: flex; gap: 14px; }
+.nalu-social { width: 48px; height: 48px; border-radius: 99px; background: var(--colors-neutral-5); color: #fff; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; font-weight: 700; transition: opacity .15s; }
+.nalu-social:hover { opacity: .82; }
+.nalu-social .nalu-icon { width: 22px; height: 22px; }
+
+.nalu-foot-cols { display: flex; gap: 96px; flex: 0 0 auto; }
+.nalu-foot-col h3 { margin: 0 0 22px; font-family: var(--typography-title-font-family-large); font-size: 17px; font-weight: 700; color: var(--content-default); }
+.nalu-foot-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.nalu-foot-col a { font-family: var(--typography-body-font-family); font-size: 16px; color: var(--content-subtle); text-decoration: none; }
+.nalu-foot-col a:hover { color: var(--content-default); }
+.nalu-foot-col a.nalu-foot-strong { color: var(--content-default); font-weight: 500; }
+
+.nalu-foot-bottom { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 56px; }
+.nalu-foot-legal { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 30px; font-family: var(--typography-body-font-family); font-size: 15px; color: var(--content-default); }
+.nalu-foot-legal .nalu-foot-copy { color: var(--content-default); }
+.nalu-foot-legal a { color: var(--content-default); text-decoration: none; }
+.nalu-foot-legal a:hover { color: inherit; text-decoration: underline; }
+.nalu-foot-legal a.nalu-foot-muted { color: var(--content-subtle); }
+.nalu-country { display: inline-flex; align-items: center; gap: 12px; height: 56px; padding: 0 26px; border: 1.5px solid var(--colors-neutral-5); border-radius: 99px; background: #fff; cursor: pointer; font-family: var(--typography-title-font-family-large); font-weight: 700; font-size: 17px; color: var(--content-default); flex: 0 0 auto; }
+.nalu-country-flag { font-size: 20px; }
+.nalu-country .nalu-icon { width: 20px; height: 20px; transition: transform 0.18s ease; }
+.nalu-country[aria-expanded="true"] .nalu-icon { transform: rotate(180deg); }
+
+.nalu-country-wrap { position: relative; flex: 0 0 auto; }
+.nalu-country-backdrop { position: fixed; inset: 0; z-index: 40; }
+.nalu-country-menu { position: absolute; right: 0; bottom: calc(100% + 12px); z-index: 50; min-width: 264px; display: flex; flex-direction: column; gap: 2px; padding: 10px; background: #fff; border: 1px solid var(--border-subtle); border-radius: 16px; box-shadow: var(--elevation-xl); }
+.nalu-country-item { display: flex; align-items: center; gap: 14px; width: 100%; padding: 12px 16px; border: 0; border-radius: 10px; background: transparent; cursor: pointer; text-align: left; font-family: var(--typography-title-font-family-large); font-weight: 700; font-size: 17px; color: var(--content-default); transition: background 0.18s ease; }
+.nalu-country-item:hover { background: var(--background-surface-lowered); }
+.nalu-country-item[data-current="1"] { background: var(--background-surface-lowered); }
+
+@media (max-width: 920px) {
+  .nalu-foot-top { flex-direction: column; gap: 40px; }
+  .nalu-foot-cols { gap: 56px; }
+  .nalu-foot-bottom { flex-direction: column; align-items: flex-start; }
+}
+
+
+/* ============================================================================
+   MOBILE SITE CHROME — phone stage + two-row header, full-screen drill-down
+   menu, search & account overlays, footer. Promoted from the igraal-mobile
+   template so MobileShell ships in the bundle. Token-driven → [data-brand]
+   reskins. Used by components/chrome/MobileShell.jsx.
+   ============================================================================ */
+.igm-app {
+  width: 100%;
+  max-width: 390px;
+  height: 100vh;
+  margin: 0 auto;
+  background: var(--background-surface-default);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden; /* clip the full-screen menu / search overlays */
+}
+/* Only this region scrolls — the header stays docked above it. */
+.igm-scroll { flex: 1 1 auto; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; display: flex; flex-direction: column; }
+
+/* ---- Header (two rows: brand+login, then menu+search) --------------------- */
+.igm-header { flex: 0 0 auto; z-index: 30; background: #fff; border-bottom: 1px solid var(--border-subtle); }
+.igm-header-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 20px; }
+.igm-header-top { height: 76px; }
+.igm-header-bottom { height: 64px; padding-bottom: 8px; }
+
+.igm-logo { all: unset; display: inline-flex; align-items: center; cursor: pointer; }
+.igm-logo-svg { height: 30px; width: auto; display: block; }
+.igm-logo-wm { font-family: var(--typography-display-font-family-large); font-weight: 700; font-size: 26px; color: var(--brand-primary); letter-spacing: -.01em; }
+
+/* the login CTA is the DS Button (.nalu-btn) — no size overrides, so it
+   inherits the design system's button scale + tokens automatically. */
+
+/* logged-in top-right: balance summary + account avatar */
+.igm-account-area { display: flex; align-items: center; gap: 14px; }
+.igm-balance { margin: 0; display: flex; flex-direction: column; gap: 2px; text-align: right; }
+.igm-balance-row { display: flex; align-items: baseline; justify-content: flex-end; gap: 8px; }
+.igm-balance-row dt { margin: 0; font-family: var(--typography-body-font-family); font-size: 13px; color: var(--content-default); }
+.igm-balance-row dd { margin: 0; font-family: var(--typography-title-font-family-large); font-weight: 700; font-size: 15px; color: var(--content-default); }
+/* Pending row (label + value) — #4D4D4D, the live site's --palette-text-secondary (= neutral-30) */
+.igm-balance-pending-row dt,
+.igm-balance-pending-row dd { color: var(--colors-neutral-30); }
+
+/* avatar: clickable account trigger, sized to match the 34×34 search button */
+.igm-avatar { all: unset; box-sizing: border-box; cursor: pointer; flex: 0 0 auto; width: 34px; height: 34px; border-radius: 99px; background: var(--content-default); color: #fff; display: inline-flex; align-items: center; justify-content: center; transition: opacity .15s; }
+.igm-avatar-glyph { display: block; }   /* inline glyph; currentColor resolves to the avatar's white */
+.igm-avatar:hover { opacity: .88; }
+
+/* account panel — same chrome as the main menu, but slides in from the RIGHT */
+.igm-account-overlay {
+  position: absolute; inset: 0; z-index: 42;
+  background: #fff;
+  display: flex; flex-direction: column;
+  transform: translateX(100%);
+  transition: transform .3s cubic-bezier(.4,0,.2,1);
+  visibility: hidden;
+}
+.igm-account-overlay.open { transform: translateX(0); visibility: visible; }
+.igm-acct-head { flex: 0 0 auto; display: flex; align-items: center; gap: 14px; height: 72px; padding: 0 20px; border-bottom: 1px solid var(--border-subtle); }
+.igm-acct-title { color: var(--content-default); }          /* sizing from DS .nalu-t-title-medium */
+.igm-acct-x { margin-left: auto; }                          /* DS IconButton, pushed right */
+.igm-acct-list { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 8px 8px 32px; }
+.igm-acct-item { all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 14px; width: 100%; padding: 12px; border-radius: 8px; cursor: pointer; font-family: var(--typography-body-font-family); font-weight: 400; font-size: 14px; line-height: 20px; color: var(--content-default); transition: background-color .2s ease; }
+.igm-acct-item:hover { background: var(--colors-transparent-black-alpha-4, rgba(0,0,0,.04)); }
+.igm-acct-item:active { background: var(--colors-transparent-black-alpha-8); }
+.igm-acct-item .igm-acct-icon { flex: 0 0 auto; color: var(--content-subtle); }
+.igm-acct-item--logout { margin-top: 12px; }
+
+/* menu trigger: hamburger + label */
+.igm-menu-trigger { all: unset; display: inline-flex; align-items: center; gap: 14px; cursor: pointer; color: var(--content-default); }
+.igm-menu-trigger:active { opacity: .6; }
+/* sizing comes from the DS .nalu-t-label-large token (applied as a class); keep mixed-case */
+.igm-menu-label { color: var(--content-default); text-transform: none; }
+
+/* search trigger is the DS IconButton (small → 16px glyph); 34×34 container for mobile */
+.igm-circbtn.nalu-iconbtn { width: 34px; height: 34px; }
+
+/* ---- Footer --------------------------------------------------------------- */
+.igm-footer {
+  margin-top: 8px;
+  background: var(--colors-neutral-95, #f1f1f0);
+  border-radius: 24px 24px 0 0;
+  padding: 30px 24px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 22px;
+}
+.igm-footer .igm-logo-svg { height: 28px; }
+.igm-footer .igm-logo-wm { font-size: 24px; }
+
+/* App Store badge (mark is a neutral placeholder for the brand glyph) */
+.igm-appstore { all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; padding: 9px 18px; background: #000; color: #fff; border-radius: 10px; }
+.igm-appstore-mark { font-size: 26px; line-height: 1; }
+.igm-appstore-text { display: flex; flex-direction: column; line-height: 1.1; }
+.igm-appstore-text small { font-size: 11px; font-weight: 400; letter-spacing: .01em; }
+.igm-appstore-text strong { font-family: var(--typography-title-font-family-large); font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
+
+.igm-footer-tagline { margin: 0; max-width: 30ch; font-family: var(--typography-body-font-family); font-size: 15px; line-height: 1.45; color: var(--content-default); }
+
+/* Socials — circular black buttons (glyphs are neutral placeholders) */
+.igm-socials { display: flex; gap: 12px; }
+.igm-social { all: unset; box-sizing: border-box; cursor: pointer; width: 40px; height: 40px; border-radius: 99px; background: #000; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; }
+.igm-social:active { opacity: .7; }
+
+/* Footer accordion — a stack of single Nalu Accordions, restyled borderless + plus/minus */
+.igm-foot-acc { width: 100%; }
+.igm-foot-acc .nalu-accordion { border-bottom: 1px solid var(--colors-transparent-black-alpha-8, rgba(0,0,0,.1)); border-radius: 0; }
+.igm-foot-acc .nalu-accordion-head { padding: 20px 36px 20px 0; position: relative; font-family: var(--typography-title-font-family-large); font-weight: 700; font-size: 16px; line-height: 1.2; letter-spacing: -.01em; color: var(--content-default); }
+.igm-foot-acc .nalu-accordion-head:hover { background: transparent; }
+.igm-foot-acc .nalu-accordion-head:active { opacity: .6; }
+.igm-foot-acc .nalu-accordion-trigger { display: none; }     /* use our own +/− marker */
+.igm-foot-acc .nalu-accordion-head::before,
+.igm-foot-acc .nalu-accordion-head::after { content: ''; position: absolute; background: var(--content-default); transition: opacity .15s; }
+.igm-foot-acc .nalu-accordion-head::before { right: 0; top: 50%; width: 18px; height: 2px; transform: translateY(-50%); }      /* horizontal */
+.igm-foot-acc .nalu-accordion-head::after  { right: 8px; top: 50%; width: 2px; height: 18px; transform: translateY(-50%); }    /* vertical  */
+.igm-foot-acc .nalu-accordion-head[data-state="open"]::after { opacity: 0; }   /* + becomes − when open */
+.igm-foot-acc .nalu-accordion-head { padding-left: 0; padding-right: 0; }
+.igm-foot-acc .nalu-accordion-content--open { padding: 0 0 18px; }
+.igm-foot-links { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.igm-foot-links a { font-family: var(--typography-body-font-family); font-size: 15px; color: var(--content-subtle); text-decoration: none; }
+.igm-foot-links a:active { color: var(--content-default); }
+.igm-foot-link--strong { font-weight: 700; color: var(--content-default) !important; }
+
+/* Country selector pill */
+.igm-country { all: unset; box-sizing: border-box; cursor: pointer; width: 100%; max-width: 240px; display: flex; align-items: center; gap: 12px; height: 52px; padding: 0 20px; border: 1.5px solid var(--border-default); border-radius: 99px; color: var(--content-default); }
+.igm-country:active { background: var(--colors-transparent-black-alpha-4, rgba(0,0,0,.03)); }
+.igm-country-flag { font-size: 20px; line-height: 1; }
+.igm-country-name { font-family: var(--typography-title-font-family-large); font-weight: 700; font-size: 16px; }
+.igm-country-wrap { position: relative; width: 100%; max-width: 240px; }
+.igm-country-wrap .igm-country { max-width: none; width: 100%; }
+.igm-country[aria-expanded] .nalu-icon, .igm-country[aria-expanded] svg { transition: transform 0.18s ease; }
+.igm-country[aria-expanded="true"] svg { transform: rotate(180deg); }
+.igm-country-backdrop { position: fixed; inset: 0; z-index: 40; }
+.igm-country-menu { position: absolute; left: 0; right: 0; bottom: calc(100% + 10px); z-index: 50; display: flex; flex-direction: column; gap: 2px; padding: 8px; background: #fff; border: 1px solid var(--border-subtle); border-radius: 16px; box-shadow: var(--elevation-xl); }
+.igm-country-item { all: unset; box-sizing: border-box; cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 10px; }
+.igm-country-item:active { background: var(--background-surface-lowered); }
+.igm-country-item[data-current="1"] { background: var(--background-surface-lowered); }
+
+/* Legal block */
+.igm-footer-legal { display: flex; flex-direction: column; gap: 12px; }
+.igm-footer-copy { margin: 0; display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; font-family: var(--typography-body-font-family); font-size: 12px; color: var(--content-subtle); }
+.igm-footer-copy a { color: var(--content-subtle); text-decoration: none; }
+.igm-footer-meta { display: flex; flex-wrap: wrap; gap: 10px 18px; }
+.igm-footer-meta a { font-family: var(--typography-body-font-family); font-size: 12px; color: var(--content-subtle); text-decoration: none; }
+.igm-footer-copy a:active, .igm-footer-meta a:active { color: var(--content-default); }
+
+/* ---- Full-screen multi-level menu ----------------------------------------- */
+.igm-menu {
+  position: absolute; inset: 0; z-index: 41;
+  background: #fff;
+  display: flex; flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform .3s cubic-bezier(.4,0,.2,1);
+  visibility: hidden;
+}
+.igm-menu.open { transform: translateX(0); visibility: visible; }
+
+/* header — swaps between title+close and back+title+close */
+.igm-menu-head { flex: 0 0 auto; display: flex; align-items: center; gap: 14px; height: 72px; padding: 0 20px; border-bottom: 1px solid var(--border-subtle); }
+.igm-menu-back { margin-left: -6px; }                       /* DS IconButton; nudge to optical edge */
+.igm-menu-title { color: var(--content-default); }  /* sizing from DS .nalu-t-title-medium */
+.igm-menu-x { margin-left: auto; }                          /* DS IconButton, pushed right */
+
+/* stacked, slidable columns (root → deepest); transform set per-column in JS */
+.igm-menu-viewport { flex: 1; overflow: hidden; position: relative; }
+.igm-menu-panel { position: absolute; inset: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 8px 8px 32px; background: #fff; transition: transform .3s cubic-bezier(.4,0,.2,1); will-change: transform; }
+
+/* menu rows — rounded full-width rows; padding/gap per DS, height stays intrinsic */
+.igm-menu-item { all: unset; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; padding: 12px; border-radius: 8px; cursor: pointer; font-family: var(--typography-body-font-family); font-weight: 400; font-size: 14px; line-height: 20px; color: var(--content-default); transition: background-color .2s ease; }
+.igm-menu-item:hover { background: var(--colors-transparent-black-alpha-4, rgba(0,0,0,.04)); }
+.igm-menu-item:active { background: var(--colors-transparent-black-alpha-8); }
+.igm-menu-item .chev { flex: 0 0 auto; color: var(--content-default); }
+.igm-menu-seeall { padding: 12px; }                          /* DS Link, aligned to the menu rows */
+
+.igm-search-overlay { position: absolute; inset: 0; z-index: 45; background: #fff; display: flex; flex-direction: column; }
+
+/* search bar: DS IconButton (back) + DS SearchInput (field, stretched) */
+.igm-search-bar { flex: 0 0 auto; display: flex; align-items: center; gap: 12px; padding: 14px 16px; }
+.igm-search-field { flex: 1; min-width: 0; }
+
+/* scrollable results region */
+.igm-search-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 8px 0 32px; }
+.igm-search-heading { margin: 8px 0 4px; padding: 0 20px; font-family: var(--typography-title-font-family-large); font-weight: 700; font-size: 19px; letter-spacing: -.01em; color: var(--content-default); }
+
+.igm-brandresults { list-style: none; margin: 0; padding: 0; }
+.igm-brandresult { display: flex; align-items: center; gap: 16px; padding: 14px 20px; cursor: pointer; }
+.igm-brandresult:active { background: var(--colors-transparent-black-alpha-4, rgba(0,0,0,.03)); }
+.igm-brandresult-logo { flex: 0 0 auto; width: 52px; height: 40px; display: inline-flex; align-items: center; justify-content: center; background: var(--colors-transparent-black-alpha-4, rgba(0,0,0,.04)); color: var(--content-subtle); font-family: var(--typography-title-font-family-large); font-weight: 700; font-size: 18px; }
+.igm-brandresult-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.igm-brandresult-name { font-family: var(--typography-body-font-family); font-weight: 600; font-size: 17px; color: var(--content-default); }
+.igm-brandresult-meta { font-family: var(--typography-body-font-family); font-size: 13px; color: var(--content-subtle); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ============================================================================
+   1.10.0 ADDITIONS — ComboBox · Scrim · ValueOfferCard
+   Ported from @atolls/nalu-react 1.185.0 sources. Structural values are exact
+   (grid areas, behaviors); where the component's own token block postdates our
+   token snapshot, values are derived from system precedents and FLAGGED in the
+   component doc-comment.
+   ========================================================================= */
+
+/* ── ComboBox (1.182.0) — reuses the inputfield scope + Dropdown surface ── */
+.nalu-combobox { position: relative; }
+.nalu-combobox-panel { position: absolute; top: 100%; left: 0; right: 0; z-index: 1000; margin-top: 4px; max-height: 540px; overflow-y: auto; }
+.nalu-combobox-option { cursor: pointer; }
+.nalu-combobox-option .nalu-dropdownitem { width: 100%; box-sizing: border-box; }
+
+/* ── Scrim (1.178.0) — .scrim{--background-color} from the token pipeline ── */
+.nalu-scrim { position: fixed; inset: 0; z-index: 1300; background-color: hsl(0 0% 0% / 0.502); }
+
+/* ── ValueOfferCard (1.185.0) — named-grid-areas offer card ──────────────
+   Structure exact from source (ValueOfferCard.css.ts + gridAreas.ts); values
+   exact from the token pipeline (.valueoffercard.a-p / .s-lg, dist snapshot
+   2026-07): mobile-first, typography/spacing step up at ≥1200px; the grid
+   template itself switches at 648px. Row lists come from the --voc-areas-m/-d
+   custom props set by the JSX. */
+.nalu-voc {
+  box-sizing: border-box; width: 100%; min-width: 0; max-width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: var(--voc-areas-m);
+  column-gap: 0px; row-gap: 8px;
+  padding: 16px;
+  border-radius: 16px;
+  background-color: hsl(0 0% 100%);
+  overflow: hidden;
+}
+/* only a card with an onClick is a click target (1.192.0) */
+.nalu-voc--interactive { cursor: pointer; }
+.nalu-voc-header { grid-area: header; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding-bottom: 8px; justify-self: stretch; }
+.nalu-voc-subtitlewrap { grid-area: subtitle; display: flex; flex-direction: column; row-gap: 8px; justify-self: stretch; align-self: stretch; }
+.nalu-voc-subtitle {
+  margin: 0; word-break: break-word; text-align: inherit;
+  color: hsl(0 0% 5.098%);
+  font-family: var(--typography-body-font-family);
+  font-size: 20px; line-height: 24px; font-weight: 700;
+}
+/* multi-part subtitle (1.190.0): joined on one line on mobile, stacked on desktop */
+.nalu-voc-subtitlepart { display: inline; }
+/* value annotation — single-line comparison caption under the subtitle */
+.nalu-voc-valueannotation {
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1;
+  align-self: stretch; overflow: hidden; text-overflow: ellipsis; text-align: inherit;
+  color: hsl(0 0% 5.098%); font-family: var(--typography-body-font-family);
+  font-size: 14px; line-height: 20px; font-weight: 400;
+}
+.nalu-voc-title {
+  grid-area: title; margin: 0; word-break: break-word;
+  color: hsl(0 0% 5.098%);
+  font-family: var(--typography-body-font-family);
+  font-size: 14px; line-height: 20px; font-weight: 400;
+  justify-self: stretch;
+}
+.nalu-voc-cta {
+  grid-area: cta; display: flex; flex-direction: column; justify-content: center;
+  align-self: stretch; justify-self: stretch; white-space: normal;
+}
+.nalu-voc-tags { grid-area: tags; display: flex; flex-wrap: wrap; align-items: center; align-content: center; gap: 8px; justify-self: stretch; }
+.nalu-voc-content { grid-area: content; display: flex; flex-direction: column; gap: 8px; width: 100%; justify-self: stretch; }
+.nalu-voc-expand {
+  grid-area: seeMoreDetails; display: inline-flex; align-items: center; justify-content: center;
+  gap: 4px; padding: 4px 4px 4px 0;
+  margin: 0; border: none; background: none; cursor: pointer; width: fit-content;
+  color: hsl(0 0% 5.098%); font-family: var(--typography-label-font-family);
+  font-size: 12px; line-height: 16px; font-weight: 400;
+  justify-self: start; align-self: center;
+}
+.nalu-voc-expand .nalu-icon { flex-shrink: 0; width: 16px; height: 16px; color: hsl(0 0% 5.098%); }
+.nalu-voc-footnote {
+  grid-area: footnote; display: flex; align-items: center; justify-content: center;
+  gap: 8px; white-space: nowrap; text-align: right;
+  color: hsl(0 0% 5.098%); font-family: var(--typography-body-font-family);
+  font-size: 12px; line-height: 24px; font-weight: 400;
+  justify-self: end; align-self: center;
+}
+.nalu-voc-details { grid-area: details; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding-top: 16px; overflow: hidden; justify-self: stretch; }
+/* details stay mounted and are hidden via [hidden] (1.194.0) */
+.nalu-voc-details[hidden] { display: none; }
+.nalu-voc-detailscontent {
+  display: flex; flex-direction: column; gap: 8px; width: 100%;
+  color: hsl(0 0% 5.098%); font-family: var(--typography-body-font-family);
+  font-size: 14px; line-height: 20px; font-weight: 400;
+}
+/* ≤647px (mobile only — source `breakpoints.tablet - 1`): the title row can be
+   dropped when it repeats the subtitle */
+@media (max-width: 647px) { .nalu-voc-title--nomobile { display: none; } }
+/* ≥648px (tablet + desktop share one grid, 1.198.0): 3-column grid, fixed 175px subtitle
+   caption column, CTA column at --button-minWidth (200px). `simplified` drops
+   the rail and reads --voc-cols-d as a 2-column template. */
+@media (min-width: 648px) {
+  .nalu-voc { grid-template-columns: var(--voc-cols-d, fit-content(100%) minmax(0, 2fr) fit-content(100%)); grid-template-areas: var(--voc-areas-d); }
+  .nalu-voc-subtitlewrap { width: 175px; text-align: center; align-self: center; }
+  .nalu-voc-subtitlewrap--simplified { width: auto; text-align: left; align-self: stretch; }
+  .nalu-voc-subtitlepart { display: block; }
+  .nalu-voc-subtitlepart--simplified { display: inline; }
+  .nalu-voc-title { display: flex; flex-direction: column; justify-content: center; gap: 8px; }
+  .nalu-voc-cta { align-items: stretch; align-self: center; justify-self: start; width: 200px; white-space: nowrap; }
+  /* the 2026-08 build moved the type/padding step-up from ≥1200px to this tier */
+  .nalu-voc { padding: 24px; column-gap: 24px; row-gap: 12px; }
+  .nalu-voc-subtitle { font-size: 26px; line-height: 30px; }
+  .nalu-voc-title { font-size: 20px; line-height: 24px; font-weight: 700; }
+}
+/* expired state (.valueoffercard.a-p.stt-exp, 2026-08 build): copy greys out —
+   title/subtitle/footnote/body/value caption at 60%, trigger label + icon at 40% */
+.nalu-voc--expired .nalu-voc-title,
+.nalu-voc--expired .nalu-voc-subtitle,
+.nalu-voc--expired .nalu-voc-valueannotation,
+.nalu-voc--expired .nalu-voc-footnote,
+.nalu-voc--expired .nalu-voc-detailscontent { color: hsl(0 0% 60%); }
+.nalu-voc--expired .nalu-voc-expand,
+.nalu-voc--expired .nalu-voc-expand .nalu-icon { color: hsl(0 0% 40%); }
+
+/* ── TagsGroup (1.190.0) — wrapping inline row of Tags (source gap token is
+   empty; 8px matches the Figma tag rows) ── */
+.nalu-tagsgroup { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+
+/* ── BannerCard (1.190.0) — promotional banner card ──────────────────────
+   Structure from BannerCard.css.ts; values from the token pipeline
+   (.bannercard.a-dflt/.a-hlgted/.s-lg). Mobile & tablet: column-reverse
+   (image on top); ≥1200px (source `desktop` breakpoint = 1200): 1fr content /
+   2fr banner row (Figma 414.67/829.33 split) with 24px gap.
+   Highlighted title reads
+   --brand-primary so [data-brand] re-skins it (matches the per-brand
+   .bannercard.a-hlgted --title-color diffs). Upstream ships no --image-radius
+   token for the banner slots → square inner corners, matching production. */
+.nalu-bannercard {
+  cursor: pointer; box-sizing: border-box; width: 100%; height: 100%;
+  display: flex; flex-direction: column-reverse; justify-content: flex-end;
+  gap: 0px; padding: 16px; border-radius: 16px;
+  background-color: hsl(0 0% 100%);
+}
+.nalu-bannercard-left {
+  display: flex; flex-direction: column; justify-content: space-between;
+  box-sizing: border-box; width: 100%; min-width: 0; flex: 1 1 auto;
+  padding-top: 24px; gap: 16px;
+}
+.nalu-bannercard-content { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.nalu-bannercard-label {
+  color: hsl(0 0% 5.098%); font-family: var(--typography-body-font-family);
+  font-size: 14px; line-height: 20px; font-weight: 400; margin: 0;
+}
+.nalu-bannercard-title {
+  /* 2026-09-11 build: title now takes the brand title face (was Inter for every brand) */
+  color: hsl(0 0% 5.098%); font-family: var(--typography-title-font-family-large);
+  font-size: 24px; line-height: 32px; font-weight: 700; margin: 0; word-break: break-word;
+}
+.nalu-bannercard--highlighted .nalu-bannercard-title { color: var(--brand-primary); }
+.nalu-bannercard-subtitle {
+  color: hsl(0 0% 5.098%); font-family: var(--typography-body-font-family);
+  font-size: 14px; line-height: 20px; font-weight: 400; margin: 0;
+}
+.nalu-bannercard-sponsored {
+  font-family: var(--typography-body-font-family);
+  font-size: 11px; line-height: 24px; font-weight: 400; margin: 0;
+}
+.nalu-bannercard-cta { display: flex; flex-direction: column; }
+.nalu-bannercard-right { position: relative; width: 100%; min-height: 160px; min-width: 0; }
+.nalu-bannercard-banner { position: absolute; inset: 0; overflow: hidden; }
+.nalu-bannercard-banner > * { width: 100%; height: 100%; object-fit: cover; display: block; }
+.nalu-bannercard-smallbanner { position: absolute; top: 16px; left: 16px; width: 80px; overflow: hidden; }
+.nalu-bannercard-smallbanner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (min-width: 1200px) {
+  .nalu-bannercard { flex-direction: row; justify-content: flex-start; align-items: stretch; gap: 24px; }
+  .nalu-bannercard-left { flex: 1 1 0; padding-top: 32px; }
+  .nalu-bannercard-right { flex: 2 1 0; min-height: 300px; }
+  .nalu-bannercard-smallbanner { width: 120px; }
+}
+
+/* ── FeaturedOfferCard (1.190.0) — editorial offer card ──────────────────
+   Structure from FeaturedOfferCard.css.ts; values from the token pipeline
+   (.featuredoffercard.a-p/.s-lg × .cc-dflt/.cc-pln). default: white fill +
+   hairline border; plain: transparent, borderless, bottom padding loses its
+   horizontal inset. Tags overlay top-left of the 2.42:1 banner; favourite
+   overlays the card frame top-right (per Figma dev-handoff). */
+.nalu-foc {
+  cursor: pointer; box-sizing: border-box; width: 100%; height: 100%; position: relative;
+  display: flex; flex-direction: column; gap: 0px;
+  border-radius: 16px; overflow: hidden;
+}
+.nalu-foc--default { background-color: hsl(0 0% 100%); border: 1px solid var(--border-subtle); }
+.nalu-foc--plain { background-color: transparent; border: 1px solid transparent; }
+.nalu-foc-banner { position: relative; }
+.nalu-foc-bannerratio { overflow: hidden; }
+.nalu-foc-bannerratio > * { width: 100%; height: 100%; object-fit: cover; display: block; }
+.nalu-foc-tags { position: absolute; top: 12px; left: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+.nalu-foc-favourite { position: absolute; top: 12px; right: 12px; z-index: 1; }
+.nalu-foc-bottom { padding: 16px; }
+.nalu-foc--plain .nalu-foc-bottom { padding-left: 0; padding-right: 0; }
+.nalu-foc-content { display: flex; align-items: flex-start; gap: 16px; }
+.nalu-foc-logo { flex-shrink: 0; width: 64px; border-radius: 12px; border: 1px solid var(--border-subtle); overflow: hidden; }
+.nalu-foc-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.nalu-foc-text { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+.nalu-foc-subtitle {
+  margin: 0; color: hsl(0 0% 5.098%); font-family: var(--typography-body-font-family);
+  font-size: 12px; line-height: 16px; font-weight: 400;
+}
+.nalu-foc-title {
+  margin: 0; word-break: break-word; color: hsl(0 0% 5.098%);
+  font-family: var(--typography-body-font-family);
+  font-size: 16px; line-height: 24px; font-weight: 700;
+}
+.nalu-foc-description {
+  margin: 0; color: hsl(0 0% 5.098%); font-family: var(--typography-body-font-family);
+  font-size: 14px; line-height: 20px; font-weight: 400;
+}
+.nalu-foc-sponsored {
+  color: hsl(0 0% 5.098%); font-family: var(--typography-body-font-family);
+  font-size: 11px; line-height: 24px; font-weight: 400;
+}
+
+/* ============================================================================
+   EXTENSION POPUP CHROME — 442×600 browser-extension popup: 48px header
+   (logo · member chip + settings OR login), content slot, 72px bottom tab bar
+   (stripe + icon + label + badge). Values transcribed from the Nalu extension
+   Figma (frame 1476:10977; Header 959:18214; Tab Bar 552:11941; Nav Bar Tabs
+   979:18949). Token-driven → [data-brand] reskins.
+   Used by components/chrome/ExtensionShell.jsx.
+   ========================================================================= */
+.igx-popup {
+  box-sizing: border-box;
+  width: 442px; height: 600px;
+  background: var(--background-surface-elevated);
+  box-shadow: inset 0 0 0 1px rgb(204,204,204), 0px 6px 9px 6px rgba(0,0,0,0.03), 0px 4px 4px 0px rgba(0,0,0,0.08);
+  display: flex; flex-direction: column; align-items: stretch;
+  overflow: hidden; position: relative;
+  font-family: var(--typography-body-font-family);
+}
+
+/* ── Header (48px) — Figma Type=Popup Window: white, hairline border,
+      padding 8px 12px, logo left · member set right ── */
+.igx-header {
+  box-sizing: border-box; flex: 0 0 48px; height: 48px;
+  display: flex; flex-direction: row; justify-content: space-between; align-items: center;
+  padding: 8px 12px;
+  background: var(--background-surface-elevated);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.igx-logo { all: unset; box-sizing: border-box; display: inline-flex; align-items: center; padding: 4px; cursor: pointer; height: 32px; }
+.igx-logo-svg { height: 24px; width: auto; display: block; }
+.igx-logo-svg.nalu-brandmark--coupons { height: 16px; }
+.igx-logo-wm { font-family: var(--typography-title-font-family-large); font-weight: 700; font-size: 18px; letter-spacing: -.02em; color: var(--brand-primary, #ff7100); }
+.igx-header-right { display: flex; flex-direction: row; gap: 8px; align-items: center; }
+
+/* member chip — 32px pill, avatar 24 + bold balance (Figma User Chip=Member) */
+.igx-chip {
+  all: unset; box-sizing: border-box; cursor: pointer;
+  display: inline-flex; flex-direction: row; gap: 4px; align-items: center;
+  height: 32px; padding: 4px 8px 4px 4px; border-radius: 24px;
+  background: var(--colors-neutral-90, hsl(0 0% 90.196%));
+}
+.igx-chip-avatar {
+  box-sizing: border-box; width: 24px; height: 24px; border-radius: 50%;
+  background: var(--background-surface-elevated);
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--content-subtle); overflow: hidden;
+}
+.igx-chip-balance { font-family: var(--typography-body-font-family); font-weight: 700; font-size: 12px; line-height: 16px; color: var(--content-default); white-space: nowrap; }
+
+/* settings icon-button — 32×32 (Figma Icon-button 1.0.2 / State=Idle) */
+.igx-iconbtn {
+  all: unset; box-sizing: border-box; cursor: pointer;
+  width: 32px; height: 32px; border-radius: 48px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--content-default);
+}
+.igx-iconbtn:hover { background: var(--background-surface-default); }
+.igx-iconbtn:active { background: var(--background-surface-lowered); }
+
+/* visitor login fallback (only when the DS Button is unavailable) */
+.igx-loginbtn {
+  all: unset; box-sizing: border-box; cursor: pointer;
+  height: 32px; padding: 0 14px; border-radius: 99px;
+  background: var(--button-primary-high-idle-background, var(--colors-neutral-5));
+  color: var(--button-primary-high-idle-color, #fff);
+  font-family: var(--typography-label-font-family); font-weight: 700; font-size: 13px;
+  display: inline-flex; align-items: center;
+}
+
+/* ── Content slot — the scrollable region between header and tab bar ── */
+.igx-content { flex: 1 1 auto; min-height: 0; overflow-y: auto; background: var(--background-surface-default); }
+
+/* ── Tab bar (72px) — Figma Origin=Pop up Window: hairline top border,
+      equal-width tabs; each = 4px stripe + icon(24) + label ── */
+.igx-tabbar {
+  box-sizing: border-box; flex: 0 0 72px; height: 72px;
+  display: flex; flex-direction: row; align-items: stretch;
+  background: var(--background-surface-elevated);
+  border-top: 1px solid rgb(204,204,204);
+}
+.igx-tab {
+  all: unset; box-sizing: border-box; cursor: pointer;
+  flex: 1 1 0; min-width: 0;
+  display: flex; flex-direction: column; gap: 4px; align-items: center;
+  padding: 0 4px 8px 4px;
+}
+.igx-tab-stripe { width: 24px; height: 4px; border-radius: 0 0 2px 2px; background: transparent; flex: 0 0 auto; }
+.igx-tab--active .igx-tab-stripe { background: var(--brand-primary); }
+.igx-tab-content {
+  box-sizing: border-box; align-self: stretch; height: 56px; border-radius: 8px;
+  display: flex; flex-direction: column; gap: 4px; padding: 4px 0;
+  justify-content: center; align-items: center;
+}
+.igx-tab:hover .igx-tab-content { background: var(--background-surface-default); }
+.igx-tab-iconwrap { position: relative; width: 24px; height: 28px; box-sizing: border-box; padding: 4px 0; display: flex; align-items: flex-end; justify-content: center; }
+.igx-tab-icon { width: 24px; height: 24px; color: var(--content-subtle); }
+.igx-tab--active .igx-tab-icon { color: var(--brand-primary); }
+.igx-tab-label { font-family: var(--typography-body-font-family); font-weight: 400; font-size: 12px; line-height: 16px; text-align: center; white-space: nowrap; color: var(--content-subtle); }
+.igx-tab--active .igx-tab-label { color: var(--content-default); }
+/* badge — min 16px pill, white ring, 10px/600 white text (Figma Badge) */
+.igx-tab-badge {
+  position: absolute; left: 15.5px; top: 0;
+  box-sizing: border-box; min-width: 16px; height: 16px; border-radius: 48px;
+  padding: 1px 4px; background: var(--colors-neutral-10, hsl(0 0% 10.196%));
+  box-shadow: 0 0 0 1px var(--background-surface-elevated);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--typography-label-font-family); font-weight: 600; font-size: 10px; line-height: 1.4;
+  color: var(--colors-white, #fff); white-space: nowrap;
+}
+
+
+/* ── LogoOfferCard (1.193.0) — wide list-row offer card ───────────────────
+   Structure exact from source (LogoOfferCard.css.ts); values from the token
+   pipeline (.logooffercard). Mobile/tablet: single stacked column capped at
+   482px. Desktop (≥1200px, the source `desktop` breakpoint): 3 columns —
+   130px logo · content · CTA; header and footer indent to the content column. */
+.nalu-loc {
+  cursor: pointer; box-sizing: border-box; width: 100%; height: 100%; min-width: 0; max-width: 100%;
+  display: flex; flex-direction: column; row-gap: 16px;
+  padding: 24px; border-radius: 16px; background-color: hsl(0 0% 100%); overflow: hidden;
+}
+.nalu-loc-middle { display: contents; }
+.nalu-loc-stack { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.nalu-loc-contentwrap { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.nalu-loc-header { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.nalu-loc-logo { width: 100%; }
+.nalu-loc-logo > .nalu-ratio > * { object-fit: cover; display: block; }
+.nalu-loc-label {
+  margin: 0; color: hsl(0 0% 5.098%); font-family: var(--typography-body-font-family);
+  font-size: 16px; line-height: 24px; font-weight: 400;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+  overflow: hidden; text-overflow: ellipsis; word-break: break-word;
+}
+.nalu-loc-title {
+  margin: 0; word-break: break-word; color: hsl(0 0% 5.098%);
+  font-family: var(--typography-body-font-family);
+  font-size: 20px; line-height: 24px; font-weight: 700;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden; text-overflow: ellipsis;
+}
+.nalu-loc-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.nalu-loc-cta { display: flex; flex-direction: column; }
+.nalu-loc-footer { display: flex; flex-direction: column; gap: 12px; }
+.nalu-loc-expand {
+  display: inline-flex; align-items: center; gap: 4px; padding: 4px 4px 4px 0;
+  margin: 0; border: none; background: none; cursor: pointer; width: fit-content;
+  color: hsl(0 0% 5.098%); font-family: var(--typography-body-font-family);
+  font-size: 16px; line-height: 24px; font-weight: 400;
+}
+.nalu-loc-expand .nalu-icon { flex-shrink: 0; width: 16px; height: 16px; transition: transform 150ms ease; }
+.nalu-loc-expand[aria-expanded="true"] .nalu-icon { transform: rotate(180deg); }
+.nalu-loc-details { display: flex; flex-direction: column; gap: 16px; }
+.nalu-loc-detailscontent { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+@media (max-width: 1199px) { .nalu-loc { max-width: 482px; margin-inline: auto; } }
+@media (min-width: 1200px) {
+  .nalu-loc-middle { display: grid; grid-template-columns: 130px minmax(0, 1fr) auto; column-gap: 24px; align-items: start; }
+  .nalu-loc-logo { width: 130px; }
+  .nalu-loc-title { -webkit-line-clamp: 3; }
+  .nalu-loc-cta { justify-self: end; align-self: start; }
+  .nalu-loc-header, .nalu-loc-footer { margin-left: 154px; }
+}
+
+/* ── Card text hardening (1.192.0) — replaces inherited text properties so a
+   consumer's wrapper (uppercase, nowrap, italics) can't leak into card copy ── */
+.nalu-foc-subtitle, .nalu-foc-title, .nalu-foc-description, .nalu-foc-sponsored,
+.nalu-bannercard-label, .nalu-bannercard-title, .nalu-bannercard-subtitle, .nalu-bannercard-sponsored,
+.nalu-loc-label, .nalu-loc-title, .nalu-loc-expand,
+.nalu-offercard-eyebrow, .nalu-offercard-title, .nalu-offercard-subtitle,
+.nalu-offercard-footnote, .nalu-offercard-sponsored,
+.nalu-voc-title, .nalu-voc-footnote, .nalu-voc-expand, .nalu-voc-detailscontent {
+  margin: 0; font-style: normal; font-variant: normal; letter-spacing: normal;
+  word-spacing: normal; text-indent: 0; text-transform: none; text-shadow: none;
+  white-space: normal; overflow-wrap: break-word;
+}
+.nalu-voc-footnote { white-space: nowrap; }
+/* cards are only click targets when they get an onClick (1.192.0) */
+.nalu-foc:not(.nalu-foc--interactive), .nalu-bannercard:not(.nalu-bannercard--interactive) { cursor: default; }
+
+
+/* ── OfferCard (nalu-react offer-card) — banner + logo offer card ─────────
+   Structure exact from source (OfferCard.tsx / OfferCard.css.ts); values from
+   the token pipeline (.offercard.a-p.cc-dflt / .s-lg.cc-dflt). Optional 2.42:1
+   top banner (border + radius opted off), 48px 1:1 inline logo beside the text
+   stack (eyebrow → title → subtitle), tags, then a footer with the footnote and
+   the CTA. The CTA wrap swallows clicks and activation keys so it never fires
+   the card's onClick. */
+.nalu-offercard {
+  cursor: pointer; box-sizing: border-box; width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  background-color: hsl(0 0% 100%);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px; overflow: hidden;
+}
+.nalu-offercard-banner { width: 100%; }
+.nalu-offercard-banner > .nalu-ratio > * { object-fit: cover; display: block; }
+.nalu-offercard-bottom {
+  display: flex; flex-direction: column; gap: 16px; margin-top: auto;
+  padding: 0 16px 16px;
+}
+.nalu-offercard-contentwrap { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+.nalu-offercard-sponsored {
+  margin: 0; align-self: stretch; text-align: right; padding-top: 8px;
+  color: hsl(0 0% 5.098%); font-family: var(--typography-body-font-family);
+  font-size: 11px; line-height: 24px; min-height: 24px; font-weight: 400;
+}
+.nalu-offercard-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; align-self: stretch; }
+.nalu-offercard-textwrap { display: flex; align-items: flex-start; align-self: stretch; gap: 8px; }
+.nalu-offercard-logo { flex-shrink: 0; width: 48px; height: 48px; }
+.nalu-offercard-logo > .nalu-ratio > * { object-fit: cover; display: block; }
+.nalu-offercard-eyebrow {
+  margin: 0; color: hsl(0 0% 5.098%); font-family: var(--typography-body-font-family);
+  font-size: 14px; line-height: 20px; font-weight: 400;
+}
+.nalu-offercard-title {
+  margin: 0; word-break: break-word; color: hsl(0 0% 5.098%);
+  font-family: var(--typography-body-font-family);
+  font-size: 16px; line-height: 24px; font-weight: 700;
+}
+.nalu-offercard-subtitle {
+  margin: 0; color: hsl(0 0% 5.098%); font-family: var(--typography-body-font-family);
+  font-size: 12px; line-height: 16px; font-weight: 400;
+}
+.nalu-offercard-tags { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; align-content: center; align-self: stretch; }
+.nalu-offercard-footer { display: flex; flex-direction: column; gap: 8px; }
+.nalu-offercard-footnote {
+  margin: 0; color: hsl(0 0% 5.098%); font-family: var(--typography-body-font-family);
+  font-size: 12px; line-height: 16px; font-weight: 400;
+}
+.nalu-offercard-cta { display: flex; }
+
+
+/* ── ProgressTracker / ProgressTrackerItem (nalu-react 1.203.0, NALU-2306) ──
+   Vertical status timeline: marker column (24px round badge + 2px connector)
+   beside the text column. PRIMARY appearance, LARGE size — the only tier the
+   library ships. Structure from source (ProgressTracker.css.ts /
+   ProgressTrackerItem.css.ts); values resolved from the 2026-09-11 token build
+   (.progresstracker.s-lg / .progresstrackeritem.a-p / .s-lg). Brand deviations
+   ride the global tokens these map to; the raw per-brand blocks are mirrored in
+   component-tokens.css. */
+.nalu-progresstracker { display: flex; flex-direction: column; gap: var(--dimension-component-2-xs); width: 100%; margin: 0; padding: 0; list-style: none; }
+.nalu-progresstracker-item { display: flex; flex-direction: column; }
+.nalu-progresstrackeritem { position: relative; display: flex; flex-direction: row; align-items: stretch; gap: var(--dimension-component-m); }
+.nalu-progresstrackeritem-marker { display: flex; flex-direction: column; align-items: center; gap: 2px; width: 24px; flex-shrink: 0; }
+.nalu-progresstrackeritem-badge {
+  box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; border: 2px solid transparent;
+}
+/* success — green fill + white check (source --success-background / --badge-success-*) */
+.nalu-progresstrackeritem-badge--success { background: var(--colors-success-50); border-color: var(--colors-success-50); color: var(--colors-white); }
+/* idle (current step) — solid ink fill, white glyph */
+.nalu-progresstrackeritem-badge--idle { background: var(--content-default); border-color: var(--content-default); color: var(--colors-white); }
+.nalu-progresstrackeritem-badge--disabled { background: transparent; border-color: var(--colors-neutral-90); color: var(--content-subtle); }
+/* a numbered idle step drops the fill and inks the label */
+.nalu-progresstrackeritem-badge--number { background: transparent; color: var(--content-default); }
+.nalu-progresstrackeritem-icon { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 16px; height: 16px; color: inherit; }
+.nalu-progresstrackeritem-icon .nalu-icon { width: 16px; height: 16px; fill: currentColor; }
+.nalu-progresstrackeritem-label {
+  margin: 0; font-family: var(--typography-title-font-family-large); font-size: 12px;
+  font-weight: 400; line-height: 16px; color: inherit;
+}
+.nalu-progresstrackeritem-connector { flex: 1 1 auto; min-height: 0; width: 2px; border-radius: 24px; background: var(--colors-neutral-90); }
+.nalu-progresstrackeritem-connector--success { background: var(--colors-success-50); }
+.nalu-progresstrackeritem-wrap { display: flex; flex-direction: column; flex: 1 1 auto; min-width: 0; gap: var(--dimension-component-2-xs); padding-bottom: 20px; }
+.nalu-progresstracker-item:last-child .nalu-progresstrackeritem-wrap { padding-bottom: 0; }
+.nalu-progresstrackeritem-header { display: flex; flex-direction: column; gap: var(--dimension-component-2-xs); }
+.nalu-progresstrackeritem-title {
+  margin: 0; font-family: var(--typography-title-font-family-large); font-size: 14px;
+  font-weight: 700; line-height: 24px; color: var(--content-default); text-wrap: pretty;
+}
+.nalu-progresstrackeritem-support {
+  margin: 0; font-family: var(--typography-body-font-family); font-size: 12px;
+  font-weight: 500; line-height: 20px; color: var(--content-subtle); text-wrap: pretty;
+}
+.nalu-progresstrackeritem-headerslot { display: flex; flex-direction: row; align-items: center; }
+.nalu-progresstrackeritem-slot { display: flex; flex-direction: column; width: 100%; }
+.nalu-visually-hidden {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
+}
