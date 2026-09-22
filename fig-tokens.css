@@ -1,0 +1,66 @@
+/* Generated from Figma Variables. First mode = :root default.
+   FLOAT tokens are unitless — multiply by 1px in calc() where a length is needed. */
+
+:root {
+  --color-grey-44: rgb(119,106,106); /* @kind color */
+  --color-grey-5-0: rgba(13,13,13,0); /* @kind color */
+  --color-grey-5-28: rgba(13,13,13,0.28); /* @kind color */
+  --color-grey-5-50: rgba(13,13,13,0.5); /* @kind color */
+  --color-grey-5-88: rgba(13,13,13,0.88); /* @kind color */
+  --color-grey-56: rgb(150,140,138); /* @kind color */
+  --color-grey-5: rgb(13,13,13); /* @kind color */
+  --color-grey-93-2: rgb(240,236,234); /* @kind color */
+  --color-grey-97-2: rgb(255,244,242); /* @kind color */
+  --color-red-41: rgb(190,58,20); /* @kind color */
+  --color-red-55: rgb(247,80,36); /* @kind color */
+  --color-white-0-2: rgba(255,255,255,0.002); /* @kind color */
+  --color-white-28: rgba(255,255,255,0.28); /* @kind color */
+  --color-white-82: rgba(255,255,255,0.82); /* @kind color */
+  --color-white-solid: rgb(255,255,255); /* @kind color */
+  --corner-radius-1015: 1015;
+  --corner-radius-18: 18;
+  --corner-radius-20: 20;
+  --corner-radius-3-5: 3.5;
+  --corner-radius-32: 32;
+  --corner-radius-3: 3;
+  --corner-radius-5-5: 5.5;
+  --corner-radius-999: 999;
+  --font-family-font-1: "Inter";
+  --font-family-font-2: "New Spirit";
+  --font-size-11: 11;
+  --font-size-12: 12;
+  --font-size-13: 13;
+  --font-size-14: 14;
+  --font-size-15: 15;
+  --font-size-16: 16;
+  --font-weight-400: 400;
+  --font-weight-500: 500;
+  --font-weight-600: 600;
+  --font-weight-700: 700;
+  --item-spacing-14: 14;
+  --item-spacing-22: 22;
+  --item-spacing-5: 5;
+  --item-spacing-6-99: 6.99;
+  --item-spacing-6: 6;
+  --item-spacing-9: 9;
+  --item-spacing-xs: 8;
+  --letter-spacing-0-28: -0.28;
+  --letter-spacing-0-48: -0.484;
+  --letter-spacing-0-88: 0.88;
+  --line-height-13-2: 13.2;
+  --line-height-15-6: 15.6;
+  --line-height-17-5: 17.5;
+  --line-height-19: 19;
+  --line-height-25: 25;
+  --opacity-100: 100;
+  --stroke-weight-1-7: 1.7;
+  --stroke-weight-7: 7;
+  --system-op-main: rgb(39,147,171); /* @kind color */
+  --system-third-parties-instagram-orange: rgb(255,122,0); /* @kind color */
+  --width-700: 700;
+}
+
+:root[data-theme="dark"], .dark {
+  --system-op-main: rgb(255,255,255); /* @kind color */
+  --system-third-parties-instagram-orange: rgb(255,122,0); /* @kind color */
+}
