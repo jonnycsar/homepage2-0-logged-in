@@ -1,47 +1,33 @@
-# iGraal — Homepage 2.0 (logged in)
+# Logged Homepage 2.0 — iGraal
 
-Protótipo em HTML da homepage logada do iGraal, construído sobre o **Nalu Design System 1.19.0**.
+Protótipo da homepage logada do iGraal, construído sobre o **Nalu Design System 1.19.0**.
+
+## Como abrir
+
+Abra `index.html` no navegador, ou publique em **Settings → Pages → Branch: main / root**.
+Todos os caminhos são relativos, então funciona direto da raiz do repositório.
 
 ## Views
 
-O seletor no canto inferior direito alterna três variantes da mesma página:
+O seletor no canto inferior direito alterna entre:
 
 - **Desktop** — layout padrão
-- **Mobile** — coluna de 402px com estrutura própria (não é o desktop reduzido)
-- **Black Friday** — hero de campanha com fundo preto, disponível em desktop e mobile de forma independente
+- **Mobile** — coluna de 402px com estrutura própria
+- **Black Friday** — campanha sazonal, com toggles independentes para desktop e mobile
 
 ## Estrutura
 
 ```
-Homepage Desktop.dc.html   página principal (todas as views)
-Homepage v4.dc.html        variante em exploração
-Homepage.dc.html           versão inicial
-support.js                 runtime necessário para abrir os .dc.html
-components/                componentes e assets materializados do Figma
-  ├── Components.bundle.js componentes do Figma (JS pré-compilado)
-  ├── fig-assets.css       classes de imagem/logo
-  ├── fig-tokens.css       tokens do Figma
-  ├── fig-typography.css   estilos de texto
-  ├── assets/              imagens (WebP/PNG)
-  └── logos/               logos de comerciantes
-desktop/                   chrome do desktop (icons, conteúdo, CSS)
-_ds/                       Nalu Design System 1.19.0
-export/                    HTML autocontido, abre offline sem servidor
-uploads/                   material original enviado (fontes das imagens)
+index.html                  página (Design Component)
+support.js                  runtime do DC
+_ds/nalu/                   Nalu Design System — tokens, estilos, bundle, fontes
+components/
+  Components.bundle.js      componentes materializados do Figma
+  fig-*.css                 tokens, tipografia e classes de imagem do Figma
+  assets/                   59 ilustrações, banners e artes
+  logos/                    163 logos de marca em uso na página
+desktop/                    chrome do desktop (header, footer, ícones, conteúdo)
 ```
 
-## Como abrir
-
-**Sem instalar nada:** abra `export/iGraal Homepage Desktop.html` no navegador — é um único arquivo com todos os assets embutidos.
-
-**Para editar:** os arquivos `.dc.html` precisam ser servidos por HTTP (por causa dos caminhos relativos):
-
-```bash
-python3 -m http.server 8000
-# depois acesse http://localhost:8000/Homepage%20Desktop.dc.html
-```
-
-## Deploy
-
-A versão publicada mais recente:
-https://igraal-homepage-v3-final-42efbf34-eaba-46dc-9afa-166-5ui1e6hnl.vercel.app
+Só estão incluídos os arquivos que a página realmente carrega. Fontes Inter e os scripts
+d3/topojson (usados pelo mapa) vêm de CDN.
